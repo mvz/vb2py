@@ -345,14 +345,14 @@ class VBMethod(object):
         return "VBMethod('%s', %s)" % (self.name, self.parameters)
     # << VBMethod methods >> (3 of 3)
     def __str__(self):
-    """String representation of this method"""
-    try:
-        if self.parameters:
-            return "%s(*%s*)" % (self.name, ", ".join([str(item) for item in self.parameters]))
-        else:
-            return "%s()" % (self.name,)
-    except:
-        print "Failed on ", self.name
+        """String representation of this method"""
+        try:
+            if self.parameters:
+                return "%s(*%s*)" % (self.name, ", ".join([str(item) for item in self.parameters]))
+            else:
+                return "%s()" % (self.name,)
+        except:
+            print "Failed on ", self.name
     # -- end -- << VBMethod methods >>
 # << tlbrowse methods >> (4 of 4)
 def enumerate(lst):
