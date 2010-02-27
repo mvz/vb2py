@@ -1,8 +1,8 @@
-import vb2py.vbparser
-from vb2py.config import VB2PYConfig
+import vbparser
+from config import VB2PYConfig
 Config = VB2PYConfig()
 
-from vb2py import logger   # For logging output and debugging 
+import logger   # For logging output and debugging 
 log = logger.getLogger("PythonCardControls")
 
 twips_per_pixel = 15
@@ -33,7 +33,7 @@ class ControlEvent:
         """Update the definition of a method based on this translation"""
         method.identifier = self.pyname % name
         # Overwrite the parameter definition
-        method.parameters = [vb2py.vbparser.VBRenderDirect("*args")]
+        method.parameters = [vbparser.VBRenderDirect("*args")]
         method.scope = "Public"
         #
         # Map arguments
