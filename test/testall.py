@@ -23,9 +23,9 @@ if __name__ == "__main__":
     try:
         for file in files:
             if file not in (r"test/testall.py", r"test/testframework.py", "test/testparser.py"):
-                fname = os.path.join(r"python /usr/local/lib/python2.6/dist-packages/vb2py", file)
-                print "Running '%s' ... " % file,
-                pi, po, pe = os.popen3(fname)
+                cmd = "python %s" % file
+                print "Running '%s' ... " % cmd,
+                pi, po, pe = os.popen3(cmd)
                 result = pe.read()
                 if result.find("FAILED") > -1:
                     try:
