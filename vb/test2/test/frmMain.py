@@ -58,7 +58,7 @@ class MAINFORM(Background):
         #
         # Do the reversing
         self.txtReverse.Text = ''
-        for i in vbForRange(Len(self.txtRawString.Text), 1, -1):
+        for i in vbForRange(Len(self.txtRawString.Text), 1, - 1):
             self.txtReverse.Text = self.txtReverse.Text + Mid(self.txtRawString.Text, i, 1)
         #
         # Do the splitting

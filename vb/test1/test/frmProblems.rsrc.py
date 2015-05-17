@@ -4,7 +4,7 @@
                                                   'type': 'VBStaticText'},
                                                  {'name': 'Label1',
                                                   'position': (24, 8),
-                                                  'text': 'C:/Development/Python24/Lib/site-packages/vb2py/vb/test1/frmProblems.frx@48018',
+                                                  'text': 'vb/test1/frmProblems.frx@48018',
                                                   'type': 'VBStaticText'},
                                                  {'name': 'Label2',
                                                   'position': (328, 72),

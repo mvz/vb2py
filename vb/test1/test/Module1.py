@@ -24,7 +24,7 @@ def btnChange_Click():
     if chkAdd.Value:
         txtValue.Text = CStr(doAnAdd(CInt(txtValue.Text), 1))
     elif chkSub.Value:
-        txtValue.Text = CStr(doAnAdd(CInt(txtValue.Text), -1))
+        txtValue.Text = CStr(doAnAdd(CInt(txtValue.Text), - 1))
 
 def btnDirectHide_Click():
     btnDirectHide.Visible = False

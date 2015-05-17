@@ -1,12 +1,10 @@
-# Created by Leo from: C:\Development\Python23\Lib\site-packages\vb2py\vb2py.leo
-
 """The main form for the application"""
 
-from PythonCardPrototype import model
+from PythonCard import model
 
 # Allow importing of our custom controls
-import PythonCardPrototype.res
-PythonCardPrototype.res.APP_COMPONENTS_PACKAGE = "vb2py.targets.pythoncard.vbcontrols"
+import PythonCard.resource
+PythonCard.resource.APP_COMPONENTS_PACKAGE = "vb2py.targets.pythoncard.vbcontrols"
 
 class Background(model.Background):
 
@@ -35,14 +33,13 @@ class MAINFORM(Background):
     def on_Command1_mouseClick(self, *args):
         #
         self.Timer1.Interval = 500
-        print self.Timer1.Enabled
         self.Timer1.Enabled = True
         #
 
     def on_Command2_mouseClick(self, *args):
         Form2.Show()
 
-    def Timer1_Timer(self):
+    def __Timer1_Timer(self):
         #
         if Screen.ActiveControl is Nothing:
             Debug.Print('No active control')
@@ -67,5 +64,5 @@ class MAINFORM(Background):
 
 
 if __name__ == '__main__':
-    app = model.PythonCardApp(MAINFORM)
+    app = model.Application(MAINFORM)
     app.MainLoop()

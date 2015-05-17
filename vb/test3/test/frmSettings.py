@@ -1,12 +1,10 @@
-# Created by Leo from: C:\Development\Python23\Lib\site-packages\vb2py\vb2py.leo
-
 """The main form for the application"""
 
-from PythonCardPrototype import model
+from PythonCard import model
 
 # Allow importing of our custom controls
-import PythonCardPrototype.res
-PythonCardPrototype.res.APP_COMPONENTS_PACKAGE = "vb2py.targets.pythoncard.vbcontrols"
+import PythonCard.resource
+PythonCard.resource.APP_COMPONENTS_PACKAGE = "vb2py.targets.pythoncard.vbcontrols"
 
 class Background(model.Background):
 
@@ -59,5 +57,5 @@ class MAINFORM(Background):
 
 
 if __name__ == '__main__':
-    app = model.PythonCardApp(MAINFORM)
+    app = model.Application(MAINFORM)
     app.MainLoop()

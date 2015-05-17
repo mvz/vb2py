@@ -38,7 +38,7 @@ class MAINFORM(Background):
         if self.chkAdd.Value:
             self.txtValue.Text = CStr(self.__doAnAdd(CInt(self.txtValue.Text), 1))
         elif self.chkSub.Value:
-            self.txtValue.Text = CStr(self.__doAnAdd(CInt(self.txtValue.Text), -1))
+            self.txtValue.Text = CStr(self.__doAnAdd(CInt(self.txtValue.Text), - 1))
 
     def on_btnDirectHide_mouseClick(self, *args):
         self.btnDirectHide.Visible = False
