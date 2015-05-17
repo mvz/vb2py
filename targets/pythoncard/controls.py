@@ -41,7 +41,7 @@ class ControlEvent:
             mapping = "%s = vbGetEventArgs([%s], args)" % (
                         ", ".join(self.vbargs),
                         ", ".join(['"%s"' % arg for arg in self.pyargs]))
-            method.block.blocks.insert(0, vb2py.vbparser.VBRenderDirect(mapping, indent=1, crlf=1))
+            method.block.blocks.insert(0, vbparser.VBRenderDirect(mapping, indent=1, crlf=1))
     # -- end -- << ControlEvent methods >>
 # -- end -- << EventSupport >>
 
