@@ -126,15 +126,15 @@ a3 = _a(3)
 # << Intrinsic tests >> (8 of 10)
 tests.extend([
 ("""
-a = FileLen("/usr/local/lib/python2.6/dist-packages/vb2py/test/vbtestfile.txt")
-""", { "a" : 164}),
+a = FileLen("test/vbtestfile.txt")
+""", { "a" : 69}),
 ])
 # << Intrinsic tests >> (9 of 10)
 tests.extend([
 ("""
-Open "/usr/local/lib/python2.6/dist-packages/vb2py/test/vbtestfile.txt" For Input As #3
+Open "test/vbtestfile.txt" For Input As #3
 a = Lof(3)
-""", { "a" : 164}),
+""", { "a" : 69}),
 ])
 # << Intrinsic tests >> (10 of 10)
 tests.extend([
