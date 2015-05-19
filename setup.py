@@ -22,7 +22,6 @@ This script is setup.py of the vb2py package.
 
 """
 
-# << Support functions >>
 class smart_install_data(install_data):
     def run(self):
         #need to change self.install_dir to the actual library dir
@@ -35,7 +34,7 @@ def recurseDir(startDir):
     listX=[startDir]
     for fyle in os.listdir(startDir):
         file=os.path.join(startDir,fyle)
-        if os.path.isdir(file):
+        if os.path.isdir(file) and fyle != '.git':
             listX.extend(recurseDir(file))
     return listX
 
@@ -49,18 +48,16 @@ def makeDataDirs(rootDir=APPLICATION_NAME, dataDirs=[]):
         directories=recurseDir(directory)
         results.extend(directories)
     for directory in results:
-        if not "svn" in os.path.split(directory)[1]:
-            # Add this directory and its contents to list
-            files=[]
-            for file in os.listdir(directory):
-                if file!='CVS' and file!='.cvsignore' and os.path.splitext(file)[1].lower() <> ".htm":
-                    if os.path.isfile(os.path.join(directory, file)):
-                        files.append(os.path.join(directory, file))
-            listX.append((rootDir+'/'+directory, files))
+        # Add this directory and its contents to list
+        files=[]
+        for file in os.listdir(directory):
+            if file!='CVS' and file!='.cvsignore' and os.path.splitext(file)[1].lower() <> ".htm":
+                if os.path.isfile(os.path.join(directory, file)):
+                    files.append(os.path.join(directory, file))
+        listX.append((rootDir+'/'+directory, files))
     # list.append((rootDir, 'stc_styles.cfg'))
 
     return listX
-# -- end -- << Support functions >>
 
 setup(name=APPLICATION_NAME, 
       version="0.2.3",
