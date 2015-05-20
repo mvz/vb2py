@@ -1904,7 +1904,7 @@ class VBName(VBCodeBlock):
         """Render this element as code"""
         self.registerImportRequired("os")
         file_list = ", ".join([fle.renderAsCode() for fle in self.files])
-        return "%sos.rename(%s)\n" % (
+        return "%sName(%s)\n" % (
                     self.getIndent(indent),
                     file_list)
     # -- end -- << VBName methods >>

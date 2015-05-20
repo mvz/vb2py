@@ -356,7 +356,7 @@ class _VBFiles:
         Watch out for path separators in the filename
 
         """
-        filename = filename.replace('\\', os.path.sep)
+        filename = self.fixSeparators(filename)
         self._lock.acquire()
         try:
             try:
@@ -473,6 +473,10 @@ class _VBFiles:
         """Determine if the named channel is at the end of the file"""
         f = self.getFile(channelid)
         return f.tell() == vbfunctions.FileLen(f.name)
+
+    def fixSeparators(self, path):
+        return path.replace('\\', os.path.sep)
+
     # -- end -- << VBFiles methods >>
 
 

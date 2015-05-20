@@ -86,6 +86,7 @@ def Dir(path=None):
     """
     global _last_files
     if path:
+        path = VBFiles.fixSeparators(path)
         _last_files = glob.glob(path)
     if _last_files:
         return os.path.split(_last_files.pop(0))[1] # VB just returns the filename, not full path
@@ -129,7 +130,7 @@ def EOF(channel):
 # << VBFunctions >> (9 of 57)
 def FileLen(filename):
     """Return the length of a given file"""
-    return os.stat(str(filename))[6]
+    return os.stat(str(VBFiles.fixSeparators(filename)))[6]
 # << VBFunctions >> (10 of 57)
 def Filter(sourcesarray, match, include=1):
     """Returns a zero-based array containing subset of a string array based on a specified filter criteria"""
@@ -716,9 +717,25 @@ Command = " ".join(sys.argv[1:])
 
 #
 # File stuff
-Kill = os.remove
-RmDir = os.rmdir
-MkDir = os.mkdir
-ChDir = os.chdir
-FileCopy = shutil.copyfile
-# -- end -- << VBFunctions >>
+#
+def Kill(path):
+    os.remove(VBFiles.fixSeparators(path))
+
+def RmDir(path):
+    os.rmdir(VBFiles.fixSeparators(path))
+
+def MkDir(path):
+    os.mkdir(VBFiles.fixSeparators(path))
+
+def ChDir(path):
+    os.chdir(VBFiles.fixSeparators(path))
+
+def FileCopy(fromPath, toPath):
+    fromPath = VBFiles.fixSeparators(fromPath)
+    toPath = VBFiles.fixSeparators(toPath)
+    shutil.copyfile(fromPath, toPath)
+
+def Name(path, asPath):
+    path = VBFiles.fixSeparators(path)
+    asPath = VBFiles.fixSeparators(asPath)
+    os.rename(path, asPath)
