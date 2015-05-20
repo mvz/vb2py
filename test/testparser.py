@@ -1,4 +1,6 @@
-#
+# coding: utf-8
+from unittest import TestCase
+from unittest import main
 # Turn off logging in extensions (too loud!)
 import vb2py.extensions
 vb2py.extensions.disableLogging()
