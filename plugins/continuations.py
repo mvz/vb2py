@@ -1,7 +1,4 @@
-try:
-    import vb2py.extensions as extensions
-except ImportError:
-    import extensions
+import vb2py.extensions as extensions
 
 
 class LineContinuations(extensions.SystemPlugin):

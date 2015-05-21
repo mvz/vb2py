@@ -1,7 +1,4 @@
-try:
-    import vb2py.extensions as extensions
-except ImportError:
-    import extensions
+import vb2py.extensions as extensions
 
 class RemoveTypeMarkers(extensions.SystemPluginREPlugin):
     """Plugin to remove the type identifiers from functions

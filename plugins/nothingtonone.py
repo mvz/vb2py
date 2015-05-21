@@ -1,7 +1,4 @@
-try:
-    import vb2py.extensions as extensions
-except ImportError:
-    import extensions
+import vb2py.extensions as extensions
 
 class ReplaceNothingWithNone(extensions.RenderHookPlugin, extensions.SystemPlugin):
     """Plugin to replace Nothing with None in objects"""

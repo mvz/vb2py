@@ -17,10 +17,7 @@ Contributed by Alexandr Zamaraev
 """
 
 
-try:
-    import vb2py.extensions as extensions
-except ImportError:
-    import extensions
+import vb2py.extensions as extensions
 
 class RecordSetShort(extensions.SystemPluginREPlugin):
   """Convert RecordSet!FieldName to RecordSet.Fields("FieldName").Value"""

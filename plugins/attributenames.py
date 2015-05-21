@@ -1,7 +1,4 @@
-try:
-    import vb2py.extensions as extensions
-except ImportError:
-    import extensions
+import vb2py.extensions as extensions
 
 # TODO: This class can be removed
 class TranslateAttributes(extensions.SystemPluginREPlugin):
