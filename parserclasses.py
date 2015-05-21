@@ -1742,16 +1742,16 @@ class VBOpen(VBCodeBlock):
         if self.access_length is not None:
             todo.append("Access length is not supported (%s)" % self.access_length.renderAsCode())
         if todo:
-            todo_warning = self.getWarning("UnknownFileMode", ", ".join(todo))
+            todo_warning = self.getWarning("UnknownFileMode", ", ".join(todo), indent, crlf = 1)
         else:
             todo_warning = ""
         #
-        return "%sVBFiles.openFile(%s, %s, '%s') %s\n" % (
-                    self.getIndent(indent),
-                    self.channel.renderAsCode(),
-                    self.filename.renderAsCode(),
-                    file_mode,
-                    todo_warning)
+        return "%s%sVBFiles.openFile(%s, %s, '%s')\n" % (
+                todo_warning,
+                self.getIndent(indent),
+                self.channel.renderAsCode(),
+                self.filename.renderAsCode(),
+                file_mode)
     # -- end -- << VBOpen methods >>
 # << Classes >> (46 of 75)
 class VBClose(VBCodeBlock):
