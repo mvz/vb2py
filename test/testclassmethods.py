@@ -16,7 +16,7 @@ tests.append((
         ("A = MyClass()\n"
          "A.SetA('hello')\n"
          "assert A.my_a == 'hello', 'A.my_a was (%s)' % (A.my_a,)\n",)
-))         
+))
 
 #
 # Simple public method with a local variable shadowing a class variable
@@ -41,7 +41,7 @@ tests.append((
          "A.SetA('thisisa')\n"
          "assert A.my_a == 'thisisaother', 'A.my_a was (%s)' % (A.my_a,)\n"
          "assert A.my_b == 'thisisb', 'A.my_b was (%s)' % (A.my_b,)\n",)
-))         
+))
 
 #
 # Simple public method calling another method
@@ -64,7 +64,7 @@ tests.append((
          "A.SetA('thisisa')\n"
          "assert A.my_a == 'thisisa', 'A.my_a was (%s)' % (A.my_a,)\n"
          "assert A.my_b == 'thisisa', 'A.my_b was (%s)' % (A.my_b,)\n",)
-))         
+))
 
 
 #
@@ -180,7 +180,7 @@ tests.append((
          "assert A.my_a == 'hello', 'A.my_a was (%s)' % (A.my_a,)\n"
          "A.SetA('bye')\n"
          "assert A.my_a == 'bye', 'A.my_a was (%s)' % (A.my_a,)\n",)
-))         
+))
 
 
 #
@@ -207,7 +207,7 @@ tests.append((
          "A.SetA('bye')\n"
          "A.ReInit()\n"
          "assert A.my_a == 'hello', 'A.my_a was (%s)' % (A.my_a,)\n",)
-))         
+))
 
 #
 # Explicitely calling the terminate method
@@ -233,7 +233,7 @@ tests.append((
          "A.SetA('bye')\n"
          "A.Reset()\n"
          "assert A.my_a == 'hello', 'A.my_a was (%s)' % (A.my_a,)\n",)
-))         
+))
 
 
 #
@@ -260,7 +260,7 @@ tests.append((
          "A.SetA('bye')\n"
          "A.ReInit()\n"
          "assert A.my_a == 'hello', 'A.my_a was (%s)' % (A.my_a,)\n",)
-))         
+))
 
 
 #
@@ -287,7 +287,7 @@ tests.append((
          "A.SetA('bye')\n"
          "A.Reset()\n"
          "assert A.my_a == 'hello', 'A.my_a was (%s)' % (A.my_a,)\n",)
-))         
+))
 
 tests.append((
         VBClassModule(),
@@ -323,7 +323,7 @@ tests.append((
          "B.DoIt(20)\n"
          "assert len(A.arr) == 11, 'len(A.arr) was (%s)' % (len(A.arr),)\n"
          "assert len(B.arr) == 21, 'len(B.arr) was (%s)' % (len(B.arr),)\n",)
-))         
+))
 
 #
 # Make sure class properties are not shared
@@ -358,7 +358,7 @@ tests.append((
         ("A = MyClass()\n"
          "A.DoIt(10)\n"
          "assert A.Val==10, 'A.Val was (%s)' % (A.Val,)\n",)
-))         
+))
 
 
 #

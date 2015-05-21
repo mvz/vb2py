@@ -38,7 +38,7 @@ def getTestMethod(vb, result):
         local_dict = {"convertVBtoPython" : convertVBtoPython,
                       "vbfunctions" : vbfunctions}
         # << Parse VB >>
-        try:					  
+        try:
             python = convertVBtoPython(vb.replace("\r\n", "\n"))
         except Exception, err:
             self.fail("Error while parsing (%s)\n%s" % (err, vb))

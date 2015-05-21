@@ -286,8 +286,8 @@ class TypeBrowseDialog(TypeBrowseDialog_Parent):
         return attributes
     # << class TypeBrowseDialog methods >> (17 of 18)
     def getMembers(self, pos):
-        "Get all the members of this object"	
-        try:	
+        "Get all the members of this object"
+        try:
             realPos, isMethod = self._GetRealMemberPos(pos)
         except:
             print "oops!"
@@ -369,7 +369,7 @@ if __name__=='__main__':
     except:
         pass
 
-    dlg = TypeBrowseDialog(fname)	
+    dlg = TypeBrowseDialog(fname)
     if fname:
         controls = dlg.dumpProperties()
     else:
@@ -388,12 +388,12 @@ if __name__=='__main__':
 
         properties = controls[control].properties.keys()
         properties.sort()
-        l("    *Properties*\n%s" % ("\n\n".join(["        %s" % 
-                    prop for prop in properties]),)	)						
+        l("    *Properties*\n%s" % ("\n\n".join(["        %s" %
+                    prop for prop in properties]),)	)
 
         methods = controls[control].methods.keys()
-        methods.sort()					
-        l("\n    *Methods*\n%s" % ("\n\n".join(["        %s" % 
+        methods.sort()
+        l("\n    *Methods*\n%s" % ("\n\n".join(["        %s" %
                     str(controls[control].methods[method]) for method in methods]),))
 
     text = "\n".join(results)

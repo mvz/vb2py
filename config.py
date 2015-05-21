@@ -27,7 +27,7 @@ class VB2PYConfigObject(dict):
             path = rootPath()
         self._config = ConfigParser.ConfigParser()
         self._config.read(os.path.join(path, filename))
-        self._local_overide = {}	
+        self._local_overide = {}
 
     def setLocalOveride(self, section, name, value):
         """Set a local overide for a value"""
@@ -44,15 +44,15 @@ class VB2PYConfigObject(dict):
     def removeLocalOveride(self, section, name,):
         """Remove a local overide"""
         self.checkValue(section, name)
-        del(self._local_overide["%s.%s" % (section, name)])        
+        del(self._local_overide["%s.%s" % (section, name)])
 
     def checkValue(self, section, name):
         """Make sure we have this section and name"""
-        dummy = self[section, name]    
+        dummy = self[section, name]
 
     def getItemNames(self, section):
         """Return the list of items in a section"""
-        base = self._config.options(section) 
+        base = self._config.options(section)
         local = []
         for name in self._local_overide:
             section_name, option = name.split(".")

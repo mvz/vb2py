@@ -10,7 +10,7 @@ class TestGlobals(unittest.TestCase):
         self.base = vb2py.vbparser.VBCodeModule(modulename="base")
         self.cls = vb2py.vbparser.VBClassModule(modulename="cls", classname="Cls")
         #
-        self.utils.parent = self.base.parent = self.cls.parent = self.proj        
+        self.utils.parent = self.base.parent = self.cls.parent = self.proj
         #
         self.utils = vb2py.vbparser.parseVB("""
         Public x, y, z
@@ -241,7 +241,7 @@ class TestGlobals(unittest.TestCase):
         python = py.renderAsCode()
         #
         for converted in ("this.MyRun", "global MyRun"):
-            self.assertEqual(python.find(converted), -1, python)		
+            self.assertEqual(python.find(converted), -1, python)
 
     def testNeedAGlobalButOnlyUseOne(self):
         """testNeedAGlobalButOnlyUseOne: need to use a global statement but should just use one"""

@@ -52,7 +52,7 @@ tests.append(("""
 Dim _lst(10) As Single
 Sub _SetValue(Index As Integer, Value)
     _lst(Index) = Value
-    If Index < 10 Then 
+    If Index < 10 Then
         _SetValue Index+1, Value+1
     End If
 End Sub
@@ -112,7 +112,7 @@ _sum 10, 20, 30
 a = _vals(1)
 _sum x:=10
 b = _vals(1)
-_sum z:=10 
+_sum z:=10
 c = _vals(1)
 _sum
 d = _vals(1)
@@ -125,7 +125,7 @@ f = _vals(1)
 #     object.method()
 #     object.method(10,20)
 #
-# These are illegal in VB 
+# These are illegal in VB
 
 tests.append(("""
 Dim _vals(10)

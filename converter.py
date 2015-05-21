@@ -23,7 +23,7 @@ from utils import rootPath
 from config import VB2PYConfig
 Config = VB2PYConfig()
 
-import logger   # For logging output and debugging 
+import logger   # For logging output and debugging
 log = logger.getLogger("vb2Py")
 
 import vbparser
@@ -115,7 +115,7 @@ class VBConverter(object):
                 self.forms.append(frm)
                 self.resources.append(frm.resources)
             #
-        # -- end -- << Handle forms >>    
+        # -- end -- << Handle forms >>
         # << Handle classes >>
         self.classes = []
         for cls in project.classes:
@@ -129,7 +129,7 @@ class VBConverter(object):
             class_mod.doParse(self.project_structure)
             self.classes.append(class_mod)
             self.resources.append(class_mod)
-        # -- end -- << Handle classes >> 
+        # -- end -- << Handle classes >>
         #
         if callback:
             callback("Done!", 100.0)
@@ -154,7 +154,7 @@ class VBConverter(object):
         # Now stick these in a fake module
         externals = vbparser.VBCOMExternalModule(modulename="COM_Externals")
         externals.names = global_names
-        # -- end -- << Add to project >>               
+        # -- end -- << Add to project >>
         for reference in references:
             # << Resolve references >>
             #
@@ -191,7 +191,7 @@ class BaseParser(object):
     # << class BaseParser methods >> (2 of 10)
     def readFileContent(self, filename):
         """Read the contents of the file"""
-        text = open(filename.strip(), "r").read() # Use strip to remove \r 
+        text = open(filename.strip(), "r").read() # Use strip to remove \r
         return text
     # << class BaseParser methods >> (3 of 10)
     def doValidation(self):
@@ -229,7 +229,7 @@ class BaseParser(object):
         #container.parent = project
         container.assignParent(project)
         try:
-            self.code_structure = vbparser.parseVB(self.code_block, container=container)		
+            self.code_structure = vbparser.parseVB(self.code_block, container=container)
         except vbparser.VBParserError, err:
             log.error("Unable to parse '%s'(%s): %s" % (self.name, self.filename, err))
             self.code_structure = vbparser.VBMessage(
@@ -328,7 +328,7 @@ class FormParser(BaseParser):
                 distinct_names[name] = 1
                 #
                 # Look for events for this control
-                for event in control._getEvents():	
+                for event in control._getEvents():
                     event_name, new_name = event.vbname, event.pyname
                     #
                     # Look for local definitions of methods which match the VB events for this object
@@ -427,8 +427,8 @@ class FormParser(BaseParser):
         # -- end -- << Remove references to frx file >>
         # << Hex numbers >>
         #
-        # Convert hex numbers - which are colours 
-        # We will have problems with system colours (&H80 ... ) so we 
+        # Convert hex numbers - which are colours
+        # We will have problems with system colours (&H80 ... ) so we
         # ultimately need a lookup table here
 
         pattern = re.compile("\&H([A-F0-9]{8})\&", re.MULTILINE+re.UNICODE)
@@ -681,7 +681,7 @@ def main():
         sys.exit(2)
 
     project_file, destination_dir = args
-    # -- end -- << Parse options >>	
+    # -- end -- << Parse options >>
     # << Validate arguments >>
     if not os.path.isfile(project_file):
         print "First parameter must be a valid VB file"
@@ -710,7 +710,7 @@ def importTarget(target):
     return TargetResource
 # << VBConverter >> (13 of 15)
 def renderTo(conv, destination_dir, do_code=1):
-    """Render the converted code to a localtion"""	
+    """Render the converted code to a localtion"""
     for item in conv.resources:
         item.writeToFile(destination_dir, do_code)
 # << VBConverter >> (14 of 15)

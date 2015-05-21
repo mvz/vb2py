@@ -4,11 +4,11 @@
 #@+others
 #@+node:pap.120703001453.162: ** Basic building blocks
 #@+node:pap.120703001453.163: *3* Basic elements
-identifier ::= 
+identifier ::=
         (safe_letter/("_", safe_letter)), (safe_letter / digit / "_")*, type_marker?
 
 type_marker ::=
-        "$" / "%" / "#" / "&"  
+        "$" / "%" / "#" / "&"
 
 NEWLINE ::=
         "\n"
@@ -17,25 +17,25 @@ NEWLINE ::=
             (" "/"\t")
 
 # Also includes the hack for a unicode marker
-<safe_letter> ::= 
+<safe_letter> ::=
              letter / '~~'
 
-<letter> ::= 
+<letter> ::=
              lowercase / uppercase
 
-lowercase ::= 
+lowercase ::=
              [a-z]
 
-uppercase ::= 
+uppercase ::=
              [A-Z]
 
-<digit> ::= 
+<digit> ::=
              [0-9]
 
-stringliteral ::=  
+stringliteral ::=
              '"', stringitem*, '"'
 
-<stringitem> ::= 
+<stringitem> ::=
              stringchar / escapeseq / '""'
 
 stringchar ::= -('"' / NEWLINE)+
@@ -43,59 +43,59 @@ stringchar ::= -('"' / NEWLINE)+
 dateliteral ::=
 			"#", integer, "/", integer, ("/", integer)?, "#"
 
-escapeseq ::= 
+escapeseq ::=
              "\\", stringchar
 
-longinteger ::= 
+longinteger ::=
              integer, ("l" / "L")
 
-integer ::= 
+integer ::=
              "-"?, decimalinteger, ("%" / "&")?
 
-decimalinteger ::= 
+decimalinteger ::=
              digit+
 
-octinteger ::= 
+octinteger ::=
              "0", octdigit+
 
-hexinteger ::= 
+hexinteger ::=
              "&H", hexdigit+, "&"?
 
-<nonzerodigit> ::= 
+<nonzerodigit> ::=
              [1-9]
 
-<octdigit> ::= 
+<octdigit> ::=
              [0-7]
 
-<hexdigit> ::= 
+<hexdigit> ::=
              digit / [a-f] / [A-F]
 
-floatnumber ::= 
-             ("-"?, (exponentfloat / pointfloat)) / (integer, "#") 
+floatnumber ::=
+             ("-"?, (exponentfloat / pointfloat)) / (integer, "#")
 
-<pointfloat> ::= 
+<pointfloat> ::=
              (intpart?, fraction) / (intpart, ".")
 
-<exponentfloat> ::= 
-             (pointfloat / intpart), 
+<exponentfloat> ::=
+             (pointfloat / intpart),
               exponent
 
-<intpart> ::= 
+<intpart> ::=
              digit+
 
-<fraction> ::= 
+<fraction> ::=
              ".", digit+
 
-<exponent> ::= 
+<exponent> ::=
              ("e" / "E"), ("+" / "-")?, digit+
 
-atom ::= 
+atom ::=
              object / literal
 
-literal ::= 
+literal ::=
              dateliteral / stringliteral / floatnumber / integer / longinteger / hexinteger
 
-name ::= 
+name ::=
              identifier
 
 colon ::=
@@ -104,7 +104,7 @@ colon ::=
 hash ::=
 			 "#"
 #@+node:pap.120703001453.164: *3* Blocks and lines
-block ::= 
+block ::=
              block_content+
 
 block_content ::=
@@ -115,7 +115,7 @@ block_content ::=
 # implicit_call_statement in the inline_if consumes the line_end - presumably there is a way
 # to prevent this and simplify what is going on here!
 
-line ::= 
+line ::=
              (?-label_definition, line_body) / (label_definition, line_body?)
 
 line_body ::=
@@ -129,7 +129,7 @@ line_end ::=
 compound_line ::=
              block
 
-file ::= 
+file ::=
              block+
 
 
@@ -142,8 +142,8 @@ end_terminator ::=
 statement ::=
                multi_statement_line / single_statement
 
-single_statement ::=  
-             ( 
+single_statement ::=
+             (
                comment_statement /
                external_declaration /
                open_statement /
@@ -164,7 +164,7 @@ single_statement ::=
                assignment_statement /
                lset_statement /
                rset_statement /
-               label_statement / 
+               label_statement /
                goto_statement /
                resume_statement /
                name_statement /
@@ -173,13 +173,13 @@ single_statement ::=
 			   event_definition /
                close_statement /
 			   end_statement /
-			   seek_statement 
+			   seek_statement
              )
 
-compound_statement ::= 
+compound_statement ::=
              for_statement /
              for_each_statement /
-             select_statement / 
+             select_statement /
              while_statement /
              do_statement /
              if_statement /
@@ -195,7 +195,7 @@ compound_statement ::=
 multi_statement_line ::=
              ((single_statement, colon) / label_statement), (wsp+, (compound_statement / statement))?
 #@+node:pap.120703001453.166: *3* Keywords
-keyword ::= 
+keyword ::=
             normal_keyword / block_terminator
 
 
@@ -206,26 +206,26 @@ normal_keyword ::=
                 c"Function" / c"Sub" / c"Do" / c"While" / c"Wend" / c"Loop" / c"For" / c"Next" / c"Exit" /
                 c"If"  / c"Select" / c"Type" / c"Set" / c"ReDim" / c"Dim" / c"Print" / c"Open" / c"With" /
                 c"Enum" / c"Property" / c"Input" / c"Close" / c"Then" / c"Else" / c"Resume" / c"To" /
-                c"Public" / c"Private" / c"Static" / c"Attribute" / c"Const" / c"Option" / c"End" / 
+                c"Public" / c"Private" / c"Static" / c"Attribute" / c"Const" / c"Option" / c"End" /
 				"Event" / c"Seek" / "BEGIN" / c"Rem" / c"Let" / c"Reset" / c"LSet" / c"RSet"
             ), (wsp / line_end)
 
 #@+node:pap.120703001453.167: *3* Expressions
 
-expression ::= 
-             (pre_named_argument?, passing_semantics?, pre_operator?, sign?, par_expression, 
+expression ::=
+             (pre_named_argument?, passing_semantics?, pre_operator?, sign?, par_expression,
              (operation, par_expression)*) / line_expression
 
-par_expression ::= 
+par_expression ::=
              point / (l_bracket, expression, r_bracket) / base_expression
 
-base_expression ::= 
+base_expression ::=
 			  simple_expr, (operation, simple_expr)?
 
-simple_expr ::= 
+simple_expr ::=
               pre_operator?, wsp*, (sign, wsp*)*, (call / atom / channelid), wsp*
 
-l_bracket ::= 
+l_bracket ::=
              wsp*, "(", wsp*
 
 r_bracket ::=
@@ -234,14 +234,14 @@ r_bracket ::=
 operation ::=
              "+" / "-" / "*" / "/" / "^" / "&&" / "&" / "||" / "\\" / c"Not" / c"Mod" / compare
 
-compare ::= 
+compare ::=
              c"Or" / c"And" / c"Xor" / "=" / "<=" / ">=" / "<>" / "<" / ">" / c"Is" / c"Like"
 
 sign ::=
-            "-" / "+"                   
+            "-" / "+"
 
 pre_named_argument ::=
-            wsp*, named_argument, ":=", wsp*    
+            wsp*, named_argument, ":=", wsp*
 
 named_argument ::=
             identifier
@@ -254,7 +254,7 @@ pre_not ::=
             wsp*, c"Not", wsp+
 
 pre_typeof ::=
-            wsp*, c"TypeOf", wsp+			
+            wsp*, c"TypeOf", wsp+
 
 channelid ::=
 			"#", atom
@@ -262,7 +262,7 @@ channelid ::=
 line_expression ::=
         point, wsp*, "-", wsp*, point
 
-point ::=       
+point ::=
         (l_bracket, expression, wsp*, ",", wsp*, expression, r_bracket)
 #@+node:pap.120703001453.169: *3* Single statements
 #@+node:pap.120703001453.170: *4* Assigment
@@ -271,7 +271,7 @@ assignment_statement ::=
              (c"Let", wsp+)?, assignment_body
 
 assignment_body ::=
-			 object, wsp*, "=", wsp*, expression			 
+			 object, wsp*, "=", wsp*, expression
 
 
 set_statement ::=
@@ -281,7 +281,7 @@ new_keyword ::=
               wsp?, c"New", wsp+
 
 object ::=
-             ?-keyword, implicit_object?, (primary, ((".", attribute) / parameter_list)*) 
+             ?-keyword, implicit_object?, (primary, ((".", attribute) / parameter_list)*)
 
 bare_object ::=
 			 ?-keyword, implicit_object?, primary, (".", attribute)*
@@ -290,9 +290,9 @@ qualified_object ::=
              bare_object, parameter_list
 
 implicit_object ::=
-             "."         
+             "."
 
-primary ::= 
+primary ::=
              identifier
 
 attribute ::=
@@ -312,13 +312,13 @@ comment_body ::=
              (stringitem / '"')*
 
 comment_start ::=
-			 "'"	/ c"Rem"		 
+			 "'"	/ c"Rem"
 
 
 
 #@+node:pap.120703001453.172: *4* External libraries
 external_declaration ::=
-        (scope, wsp+)?, c"Declare", wsp+, (c"Sub" / c"Function"), wsp+, identifier, wsp+, c"Lib", wsp+, 
+        (scope, wsp+)?, c"Declare", wsp+, (c"Sub" / c"Function"), wsp+, identifier, wsp+, c"Lib", wsp+,
         stringliteral, wsp+, (c"Alias", wsp+, stringliteral, wsp+)?, formal_param_list, type_definition?
 
 
@@ -356,7 +356,7 @@ const_statement ::=
              (scope, wsp+)?, c"Const", wsp+, const_definition, (",", wsp*, const_definition)*
 
 const_definition ::=
-             identifier, type_definition?, wsp*, "=", wsp*, expression             
+             identifier, type_definition?, wsp*, "=", wsp*, expression
 
 
 type_definition ::=
@@ -372,7 +372,7 @@ size ::=
              expression
 
 size_range ::=
-             size, wsp*, c"To", wsp*, size            
+             size, wsp*, c"To", wsp*, size
 
 type ::=
              primary, (".", attribute)*
@@ -380,7 +380,7 @@ type ::=
 scope ::=
              c"Global" / c"Private" / c"Public" / c"Static" / c"Friend"
 
-value ::= 
+value ::=
              literal
 
 redim_statement ::=
@@ -393,7 +393,7 @@ array_indicator ::=
               wsp*, "()"
 
 string_size_definition ::=
-			  wsp*, "*", wsp*, string_size_indicator	
+			  wsp*, "*", wsp*, string_size_indicator
 
 string_size_indicator ::=
 			  atom
@@ -408,25 +408,25 @@ on_error_goto ::=
         on_error, c"GoTo", wsp+, label
 
 on_error_resume ::=
-        on_error, c"Resume", wsp+, c"Next"        
+        on_error, c"Resume", wsp+, c"Next"
 
 on_goto ::=
-        on_variable, c"GoTo", wsp+, bare_list        
+        on_variable, c"GoTo", wsp+, bare_list
 
-on_error ::= 
+on_error ::=
         label_definition?, c"On", wsp+, local?, c"Error", wsp+
 
-on_variable ::= 
+on_variable ::=
         label_definition?, c"On", wsp+, expression
 
 local ::=
-		c"Local", wsp+		
+		c"Local", wsp+
 #@+node:pap.120703001453.176: *4* Print / Get
-print_statement ::= 
+print_statement ::=
         label_statement?, c"Print", (wsp+, channel_id, wsp*, ",", wsp*)?, print_list?
 
 channel_id ::=
-        "#", expression     
+        "#", expression
 
 hold_cr ::=
         ";"
@@ -476,7 +476,7 @@ channel_number ::=
 #@+node:pap.120703001453.179: *4* Calls
 
 call_statement ::=
-            label_definition?, (c"Call", wsp+, object, list?) 
+            label_definition?, (c"Call", wsp+, object, list?)
 
 implicit_call_statement ::=
             label_definition?, ?-keyword, (simple_expr, bare_list, (line_end / colon))
@@ -487,7 +487,7 @@ explicit_call_statement ::=
 inline_implicit_call ::=
             label_definition?, ?-keyword, (simple_expr, bare_list)
 
-list ::= 
+list ::=
              "(", bare_list, ")"
 
 bare_list ::=
@@ -501,7 +501,7 @@ positional_item ::=
              (bare_list_item / missing_positional), list_separator
 
 missing_positional ::=
-             wsp*             
+             wsp*
 
 bare_list_item ::=
 			 addressof?, expression
@@ -510,7 +510,7 @@ addressof ::=
 			 c"AddressOf", wsp+
 
 list_separator ::=
-        "," / ";"			 
+        "," / ";"
 #@+node:pap.120703001453.180: *4* Resume statement
 resume_statement ::=
         label_definition?, c"Resume", (wsp+, resume_location)?
@@ -537,7 +537,7 @@ while_statement ::=
                 c"While", wsp+, expression, line_end, block, label_definition?, (c"End While" / c"Wend")
 
 do_statement ::=
-                c"Do", (while_clause / until_clause)?, line_end, block, 
+                c"Do", (while_clause / until_clause)?, line_end, block,
                 label_definition?, c"Loop", (post_until_clause / post_while_clause)?
 
 while_clause ::=
@@ -547,7 +547,7 @@ until_clause ::=
                 (wsp+, c"Until", wsp+, expression)
 
 post_until_clause ::=
-                until_clause                
+                until_clause
 
 post_while_clause ::=
                 while_clause
@@ -566,7 +566,7 @@ case_else_block ::=
                 label_definition?, c"Case", wsp+, c"Else", case_body
 
 case_body ::=
-				(colon, line_end, block?) / ((line_end / colon), block?) 
+				(colon, line_end, block?) / ((line_end / colon), block?)
 
 case_list ::=
                  ?-c"Else", (case_expression, (",", case_expression)*)?
@@ -574,23 +574,23 @@ case_list ::=
 case_expression ::=
                   expression, (to_keyword, expression)?
 
-to_keyword ::= 
+to_keyword ::=
                   c"To"
 
 case_comment_block ::=
 				  block
 #@+node:pap.120703001453.188: *3* If
-inline_if_statement ::= 
+inline_if_statement ::=
              label_definition?, hash?, c"If", condition, hash?, c"Then", wsp+, inline_if_block,
              (wsp*, hash?, c"Else", wsp+, inline_else_block)?
 
-if_statement ::= 
-             hash?, c"If", condition, hash?, c"Then", line_end, if_block?, 
+if_statement ::=
+             hash?, c"If", condition, hash?, c"Then", line_end, if_block?,
              else_if_statement*,
              else_statement?,
              label_definition?, hash?, c"End If"
 
-if_block ::= 
+if_block ::=
              block
 
 else_if_statement ::=
@@ -615,7 +615,7 @@ inline_block ::=
 
 #@+node:pap.120703001453.189: *3* For and for each
 for_statement ::=
-                c"For", wsp+, object, wsp*, "=", wsp*, 
+                c"For", wsp+, object, wsp*, "=", wsp*,
                 expression, c"To", wsp+, expression, for_stepping?, line_end,
                 block?,
                 label_definition?, c"Next", (wsp+, object)?
@@ -624,15 +624,15 @@ for_stepping ::=
                 c"Step", expression
 
 for_each_statement ::=
-                c"For", wsp+, c"Each", wsp+, object, wsp*, c"In", wsp+, 
+                c"For", wsp+, c"Each", wsp+, object, wsp*, c"In", wsp+,
                 expression, line_end,
                 block?,
                 label_definition?, c"Next", (wsp+, object)?
 
-inline_for_statement ::=				
+inline_for_statement ::=
                 c"For", wsp+, object, wsp*, "=", wsp*,
-				expression, c"To", wsp+, expression, for_stepping?, 
-				colon, body, c"Next", (wsp+, object)?	
+				expression, c"To", wsp+, expression, for_stepping?,
+				colon, body, c"Next", (wsp+, object)?
 
 body ::=
 			    (implicit_call_statement / (single_statement, colon))*
@@ -651,7 +651,7 @@ optional ::=
              c"Optional", wsp+
 
 passing_semantics ::=
-             (c"ByVal" / c"ByRef"), wsp+           
+             (c"ByVal" / c"ByRef"), wsp+
 
 parameter_list ::=
              list
@@ -661,7 +661,7 @@ fn_definition ::=
              formal_param_list, type_definition?, line_end, block?, label_definition?, c"End Function"
 
 default_value ::=
-            wsp*, "=", expression            
+            wsp*, "=", expression
 
 
 static ::=
@@ -669,7 +669,7 @@ static ::=
 
 #@+node:pap.120703001453.191: *3* Properties
 property_definition ::=
-             label_definition?, (scope, wsp*)?, c"Property", wsp+, property_decorator_type, wsp+, identifier, 
+             label_definition?, (scope, wsp*)?, c"Property", wsp+, property_decorator_type, wsp+, identifier,
              formal_param_list, type_definition?, line_end, block?, label_definition?, c"End Property"
 
 property_decorator_type ::=

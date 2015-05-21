@@ -14,7 +14,7 @@ class MAINFORM(model.Background):
     """The main form for the application"""
 
 # CODE_GOES_HERE
-        
+
 if __name__ == '__main__':
     app = model.PythonCardApp(MAINFORM)
     app.MainLoop()

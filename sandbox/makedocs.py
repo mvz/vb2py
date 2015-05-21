@@ -6,7 +6,7 @@ import os
 import sys
 
 #
-# Turn off logging 
+# Turn off logging
 import vb2py.extensions
 vb2py.extensions.disableLogging()
 vb2py.vbparser.log.setLevel(0) # Don't print all logging stuff
@@ -14,7 +14,7 @@ vb2py.vbparser.log.setLevel(0) # Don't print all logging stuff
 # << fn doAutomaticVBConversion >>
 def doAutomaticVBConversion(txt):
     """Convert VB code in the text to Python"""
-    vb = re.compile(r'(.*?)<p>VB(\(.*?\))?:</p>.*?<pre class="literal-block">(.*?)</pre>(.*?)', 
+    vb = re.compile(r'(.*?)<p>VB(\(.*?\))?:</p>.*?<pre class="literal-block">(.*?)</pre>(.*?)',
                     re.DOTALL+re.MULTILINE)
     def convertVB(match):
         """Convert the match"""

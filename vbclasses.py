@@ -29,7 +29,7 @@ class Collection(dict):
         # self.insertOrder is used as the relative index when the collection
         # is treated as an array.
         # It is also used as the dictionary key for entries that have no
-        # assigned key. This always works because VB keys can only be strings. 
+        # assigned key. This always works because VB keys can only be strings.
         self.insertOrder = 1
     # << Collection Methods >> (2 of 12)
     def __setitem__(self, Key, Item):
@@ -95,7 +95,7 @@ class Collection(dict):
         - after
         before and after exclude each other
         """
-        if Before is None and After is None: 
+        if Before is None and After is None:
             self[Key] = Item
 
         elif Before is not None and After is None:
@@ -132,7 +132,7 @@ class Collection(dict):
     def Item(self, Key):
         """Get an item from the collection"""
         return self.__getitem__(Key)
-    # -- end -- << Collection Methods >>    
+    # -- end -- << Collection Methods >>
 
 
 
@@ -265,7 +265,7 @@ class VBArray(list):
             if rest:
                 return list.__getitem__(self, myindex-self._min).__getitem__(rest)
             else:
-                return list.__getitem__(self, myindex-self._min)		
+                return list.__getitem__(self, myindex-self._min)
         else:
             raise IndexError("Index '%d' is out of range (%d, %d)" % (myindex, self._min, self._max))
     # << VBArray methods >> (5 of 10)
@@ -335,7 +335,7 @@ class _VBFiles:
     runtime we can't do a static conversion.
 
     The solution used here is to have a global object which everyone interfaces to when
-    doing reading and writing to files. This object maintains the list of open channels 
+    doing reading and writing to files. This object maintains the list of open channels
     and marshalls all read and write operations.
 
     """
@@ -387,7 +387,7 @@ class _VBFiles:
         """Get data from a file
 
         VB nicely parses the input from files into variables so we have to mimic this
-        here. 
+        here.
 
         For safety sake we go one character at a time here. TODO: find out how VB does this
         and what the implications of chunking would be in a multithreaded app.
@@ -405,7 +405,7 @@ class _VBFiles:
             buffer = ""
             while len(vars) < number:
                 char = f.read(1)
-                if char <> '\r':            
+                if char <> '\r':
                     if char in separators:
                         if evaloutput:
                             # Try to eval it - if we get a syntax error then assume it is a string
@@ -415,12 +415,12 @@ class _VBFiles:
                                 vars.append(buffer)
                         else:
                             vars.append(buffer)
-                        buffer = ""	
+                        buffer = ""
                     else:
                         buffer += char
         finally:
             self._lock.release()
-        #	
+        #
         if number == 1:
             return vars[0]
         else:
@@ -433,7 +433,7 @@ class _VBFiles:
     def writeText(self, channelid, *args):
         """Write data to the file
 
-        We write with tabs separating the variables that are given in the *args parameter. The 
+        We write with tabs separating the variables that are given in the *args parameter. The
         lock is used to protect this section in multithreaded environments.
 
         If the channelid is None then this is a bare Print statement which we
@@ -469,7 +469,7 @@ class _VBFiles:
         """Return a list of currently open channels"""
         return self._channels.keys()
     # << VBFiles methods >> (11 of 11)
-    def EOF(self, channelid): 
+    def EOF(self, channelid):
         """Determine if the named channel is at the end of the file"""
         f = self.getFile(channelid)
         return f.tell() == vbfunctions.FileLen(f.name)

@@ -8,7 +8,7 @@ class VBControl:
     pycard_name = "VBControl"
     is_container = 0 # 1 for container classes like frames
 
-    _attribute_translations = { 
+    _attribute_translations = {
                 "Visible" : "visible",
                 "BackColor" : "backgroundColor",
                 "ForeColor" : "foregroundColor",
@@ -130,7 +130,7 @@ class VBControl:
 
         """
         if match.groups()[0] is not None:
-            return "self.components.%s.%s" % (cls._realName(), 
+            return "self.components.%s.%s" % (cls._realName(),
                                               cls._attributeTranslation(match.groups()[0]))
         else:
             return "self.components.%s" % (cls._realName(),)
@@ -171,7 +171,7 @@ class Menu(VBControl):
 
     _getControlEntry = classmethod(_getControlEntry)
 
-    def _pyCardMenuEntry(cls):		
+    def _pyCardMenuEntry(cls):
         """Return the entry for this menu"""
         return {
                     "type" : "Menu",
@@ -208,7 +208,7 @@ class ComboBox(VBControl):
             ptr += 2+length
         return lst
 
-    _getEntriesFromFRX = classmethod(_getEntriesFromFRX)			
+    _getEntriesFromFRX = classmethod(_getEntriesFromFRX)
 
 
     def _getClassSpecificControlEntries(cls):
@@ -238,7 +238,7 @@ class Label(VBControl):
 class CheckBox(VBControl):
     pycard_name = "CheckBox"
 
-    _attribute_translations = { 
+    _attribute_translations = {
                     "Value" : "checked",
                     }
     _attribute_translations.update(VBControl._attribute_translations)
@@ -254,7 +254,7 @@ class CheckBox(VBControl):
 class TextBox(VBControl):
     pycard_name = "TextField"
 
-    _attribute_translations = { 
+    _attribute_translations = {
                     "Text" : "text",
                     }
     _attribute_translations.update(VBControl._attribute_translations)
@@ -269,7 +269,7 @@ class TextBox(VBControl):
 class Form(VBControl):
     """Form"""
 
-    HeightModifier = 20 # Used to account for form borders	
+    HeightModifier = 20 # Used to account for form borders
     MenuHeight = 30 # Allows for menu
     Caption = "Form"
 # << Controls >> (9 of 11)
@@ -321,7 +321,7 @@ class VBUnknownControl(Label):
     Caption = "Unknown control"
 # -- end -- << Controls >>
 
-possible_controls = { 
+possible_controls = {
     "VBControl" : "VBControl",
     "Form" : "Form",
     "CommandButton" : "CommandButton",

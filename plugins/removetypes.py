@@ -18,7 +18,7 @@ class RemoveTypeMarkers(extensions.SystemPluginREPlugin):
             (r"Left\$\(", "Left("),
             (r"Right\$\(", "Right("),
             (r"Mid\$\(", "Mid("),
-            (r"Chr\$\(", "Chr("),	
-            (r"Dir\$\(", "Dir("),	
-            (r"Trim\$\(", "Dir("),	
+            (r"Chr\$\(", "Chr("),
+            (r"Dir\$\(", "Dir("),
+            (r"Trim\$\(", "Dir("),
     )

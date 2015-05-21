@@ -20,7 +20,7 @@ tests.append((
         ("A = MyClass()\n"
          "A.SetA('hello')\n"
          "assert A.GetA() == 'hello', 'A.a was (%s)' % (A.a,)\n",)
-))         
+))
 
 #
 # Simple private data is not available from outside class
@@ -41,7 +41,7 @@ tests.append((
         ("A = MyClass()\n"
          "A.SetA('hello')\n"
          "assert hasattr(A, 'a') == 0, 'Could see attribute a'\n",)
-))         
+))
 
 #
 # Simple private constant data
@@ -89,7 +89,7 @@ tests.append((
         ("A = MyClass()\n"
          "A.SetA('hello')\n"
          "assert A.GetA() == 'hello', 'A.a was (%s)' % (A.a,)\n",)
-))         
+))
 
 #
 # Simple private sub is not available from outside class
@@ -130,7 +130,7 @@ tests.append((
         ("A = MyClass()\n"
          "A.SetA('hello')\n"
          "assert A.GetA() == 'hello', 'A.a was (%s)' % (A.a,)\n",)
-))         
+))
 
 #
 # Simple private fn is not available from outside class
@@ -175,7 +175,7 @@ tests.append((
         ("A = MyClass()\n"
          "A.SetA('hello')\n"
          "assert A.GetA() == 'hello', 'A.a was (%s)' % (A.a,)\n",)
-))         
+))
 
 #
 # Simple private fn is not available from outside class

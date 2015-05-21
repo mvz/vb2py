@@ -2,7 +2,7 @@ import vbparser
 from config import VB2PYConfig
 Config = VB2PYConfig()
 
-import logger   # For logging output and debugging 
+import logger   # For logging output and debugging
 log = logger.getLogger("PythonCardControls")
 
 twips_per_pixel = 15
@@ -63,7 +63,7 @@ evtFocusAll = (evtGotFocus, evtLostFocus, evtSetFocus)
 
 #
 # Mouse moving
-evtMouseMove = ControlEvent("%s_MouseMove", "on_%s_mouseMove", 
+evtMouseMove = ControlEvent("%s_MouseMove", "on_%s_mouseMove",
                             ("Button", "Shift", "X", "Y"),
                             ("ButtonDown()", "ShiftDown()", "x", "y"))
 evtMouseDown = ControlEvent("%s_MouseDown", "on_%s_mouseDown",
@@ -76,7 +76,7 @@ evtMouseAll = (evtMouseMove, evtMouseDown, evtMouseUp)
 
 #
 # Pathologically some events have lower case X and Y in the VB version!
-evtMouseMoveLC = ControlEvent("%s_MouseMove", "on_%s_mouseMove", 
+evtMouseMoveLC = ControlEvent("%s_MouseMove", "on_%s_mouseMove",
                             ("Button", "Shift", "x", "y"),
                             ("ButtonDown()", "ShiftDown()", "x", "y"))
 evtMouseDownLC = ControlEvent("%s_MouseDown", "on_%s_mouseDown",
@@ -109,7 +109,7 @@ class VBControl:
     pycard_name = "VBControl"
     is_container = 0 # 1 for container classes like frames
 
-    _attribute_translations = { 
+    _attribute_translations = {
                 "Visible" : "visible",
                 "BackColor" : "backgroundColor",
                 "ForeColor" : "foregroundColor",
@@ -252,7 +252,7 @@ class VBControl:
 
         """
         if match.groups()[0] is not None:
-            return "self.components.%s.%s" % (cls._realName(), 
+            return "self.components.%s.%s" % (cls._realName(),
                                               cls._attributeTranslation(match.groups()[0]))
         else:
             return "self.components.%s" % (cls._realName(),)
@@ -308,7 +308,7 @@ class VBControl:
 
     _getAttribute = classmethod(_getAttribute)
     # << class VBControl methods >> (14 of 14)
-    def _getPyCardColours(cls, vbcolour): 
+    def _getPyCardColours(cls, vbcolour):
             """Convert a VB colour to a PythonCard colour
 
             There are a number of issues here. The main one is that VB often
@@ -340,7 +340,7 @@ class Menu(VBControl):
 
     _getControlEntry = classmethod(_getControlEntry)
 
-    def _pyCardMenuEntry(cls):		
+    def _pyCardMenuEntry(cls):
         """Return the entry for this menu"""
         return {
                     "type" : "Menu",
@@ -388,7 +388,7 @@ class ComboBox(VBControl):
             ptr += 2+length
         return lst
 
-    _getEntriesFromFRX = classmethod(_getEntriesFromFRX)			
+    _getEntriesFromFRX = classmethod(_getEntriesFromFRX)
 
 
     def _getClassSpecificControlEntries(cls):
@@ -448,7 +448,7 @@ class CheckBox(VBControl):
     _events = evtClickAll + evtFocusAll + evtDragAll + evtMouseAll + evtKeyAll
 
 
-    _attribute_translations = { 
+    _attribute_translations = {
                     "Value" : "checked",
                     }
     _attribute_translations.update(VBControl._attribute_translations)
@@ -471,7 +471,7 @@ class TextBox(VBControl):
     # Lookup table showing the VB event name and the Pythoncard event name
     _events = (evtClick, evtChange) + evtFocusAll + evtDragAll + evtMouseAll + evtKeyAll
 
-    _attribute_translations = { 
+    _attribute_translations = {
                     "Text" : "text",
                     }
     _attribute_translations.update(VBControl._attribute_translations)
@@ -565,10 +565,10 @@ class TreeView(VBControl):
 
     def _getClassSpecificControlEntries(cls):
         """Return additional items for this entry"""
-        d = { 
+        d = {
             "size" : (cls.Width/twips_per_pixel, cls.Height/twips_per_pixel),
         }
-        return d            
+        return d
 
     _getClassSpecificControlEntries = classmethod(_getClassSpecificControlEntries)
 # << Controls >> (15 of 16)
@@ -591,7 +591,7 @@ class VBUnknownControl(Label):
     Caption = "Unknown control"
 # -- end -- << Controls >>
 
-possible_controls = { 
+possible_controls = {
     "VBControl" : "VBControl",
     "Form" : "Form",
     "CommandButton" : "CommandButton",

@@ -27,7 +27,7 @@ class smart_install_data(install_data):
         #need to change self.install_dir to the actual library dir
         install_cmd = self.get_finalized_command('install')
         self.install_dir = getattr(install_cmd, 'install_lib')
-        return install_data.run(self) 
+        return install_data.run(self)
 
 def recurseDir(startDir):
     # This should all be replaced by calls to os.path.walk, but later
@@ -59,13 +59,13 @@ def makeDataDirs(rootDir=APPLICATION_NAME, dataDirs=[]):
 
     return listX
 
-setup(name=APPLICATION_NAME, 
+setup(name=APPLICATION_NAME,
       version="0.2.3",
       description="Visual Basic to Python Converter",
       author="Paul Paterson",
       author_email="paulpaterson@users.sourceforge.net",
       url="http://vb2py.sourceforge.net",
-      packages=["vb2py", "vb2py.test", "vb2py.sandbox", 
+      packages=["vb2py", "vb2py.test", "vb2py.sandbox",
                 "vb2py.plugins", "vb2py.targets", "vb2py.targets.pythoncard"],
       package_dir={APPLICATION_NAME: '.'},
       license="BSD",

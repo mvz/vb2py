@@ -100,7 +100,7 @@ d = _b(_a(2))
 """, {"c" : 20, "d" : 30}
 ))
 
-# Double dim set 
+# Double dim set
 tests.append(("""
 Dim _a(10), _b(10)
 for _i = 1 To 10

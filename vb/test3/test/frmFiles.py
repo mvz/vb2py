@@ -34,7 +34,7 @@ class MAINFORM(Background):
     def on_cmdCheck_mouseClick(self, *args):
         chn = Integer()
         chn = FreeFile()
-        VBFiles.openFile(chn, 'test.txt', 'r') 
+        VBFiles.openFile(chn, 'test.txt', 'r')
         Globals.test = VBFiles.getInput(chn, 1)
         if Globals.test == 'Ok!':
             MsgBox('It worked')
@@ -59,7 +59,7 @@ class MAINFORM(Background):
     def on_cmdMakeTestFile_mouseClick(self, *args):
         chn = Integer()
         chn = FreeFile()
-        VBFiles.openFile(chn, 'test.txt', 'w') 
+        VBFiles.openFile(chn, 'test.txt', 'w')
         VBFiles.writeText(chn, 'Ok!', '\n')
         VBFiles.closeFile(chn)
 

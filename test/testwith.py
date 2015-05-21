@@ -80,7 +80,7 @@ With _a
     With .Obj ' ie _b
        With .Obj ' ie _c
             val = .Value
-       End With 
+       End With
     End With
 End With
 """, {"val" : 10}))

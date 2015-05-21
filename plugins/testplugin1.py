@@ -5,14 +5,14 @@ except ImportError:
 
 
 class TestREPlugin(extensions.RETextMarkup):
-    """An example plugin"""    
+    """An example plugin"""
 
     name = "REPlugin"
 
     pre_process_patterns = (
             ("(?P<Object>.*)_Click", "%(Object)s_click"),
             ("\sError\s", " _errfn "),
-    )    
+    )
 
 
 class NotAPlugIn:

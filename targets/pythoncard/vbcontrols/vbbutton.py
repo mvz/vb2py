@@ -9,23 +9,23 @@ import sys
 from PythonCard import event, registry, widget
 
 
-class VBButton(VBWidget): 
-    __metaclass__ = VBWrapped 
+class VBButton(VBWidget):
+    __metaclass__ = VBWrapped
 
-    _translations = { 
-            "Text" : "text", 
-            "Enabled" : "enabled", 
-            "Visible" : "visible", 
-        } 
+    _translations = {
+            "Text" : "text",
+            "Enabled" : "enabled",
+            "Visible" : "visible",
+        }
 
-    _indexed_translations = { 
-            "Left" : ("position", 0), 
-            "Top" : ("position", 1), 
-            "Width" : ("size", 0), 
-            "Height" : ("size", 1), 
-        } 
+    _indexed_translations = {
+            "Left" : ("position", 0),
+            "Top" : ("position", 1),
+            "Width" : ("size", 0),
+            "Height" : ("size", 1),
+        }
 
-    _proxy_for = button.Button 
+    _proxy_for = button.Button
 
 
 log.debug("Registering VBButton as '%s'" % sys.modules[__name__].VBButton)

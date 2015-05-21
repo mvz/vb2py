@@ -21,7 +21,7 @@ tests.append(
         End If
      """,
      {"a" : 20, "b" : 0}
-    ))	
+    ))
 
 # Test main branch of If with not
 tests.append(
@@ -104,7 +104,7 @@ tests.append(
         End If
      """,
      {"a" : 20, "b" : 2}
-    ))	
+    ))
 
 # Test else branch of If
 tests.append(
@@ -182,7 +182,7 @@ tests.append(
         End If
      """,
      {"a" : 10, "b" : 2, "c" : 20}
-    ))	
+    ))
 
 tests.append(
     ("""a = 10
@@ -269,13 +269,13 @@ tests.append(
 # << If tests >> (7 of 7)
 # Lots of inline ifs
 tests.extend([
-    ("a = 0\nIf 1 < 2 Then a = 10", {"a" : 10,}),	
+    ("a = 0\nIf 1 < 2 Then a = 10", {"a" : 10,}),
     ("a = 0\nIf 2 < 1 Then a = 10", {"a" : 0,}),
-    ("If 1 < 2 Then a = 10 Else a = 20", {"a" : 10,}),	
-    ("If 1 > 2 Then a = 10 Else a = 20", {"a" : 20,}),	
+    ("If 1 < 2 Then a = 10 Else a = 20", {"a" : 10,}),
+    ("If 1 > 2 Then a = 10 Else a = 20", {"a" : 20,}),
 ])
 
-# Bug #810401 python if statements may be missing a body 
+# Bug #810401 python if statements may be missing a body
 tests.append((
 """
 a = 0

@@ -9,31 +9,31 @@ import sys
 from PythonCard import event, registry, widget
 
 
-class VBComboBox(VBWidget): 
-    __metaclass__ = VBWrapped 
+class VBComboBox(VBWidget):
+    __metaclass__ = VBWrapped
 
-    _translations = { 
-            "Text" : "text", 
-            "Enabled" : "enabled", 
-            "Visible" : "visible", 
+    _translations = {
+            "Text" : "text",
+            "Enabled" : "enabled",
+            "Visible" : "visible",
             "List" : "items",
-    } 
+    }
 
     _name_to_method_translations = {
             "ListCount" : ("getNumber", None),
             "ListIndex" : ("getSelectionIndex", None),
     }
 
-    _indexed_translations = { 
-            "Left" : ("position", 0), 
-            "Top" : ("position", 1), 
-            "Width" : ("size", 0), 
-            "Height" : ("size", 1), 
-    } 
+    _indexed_translations = {
+            "Left" : ("position", 0),
+            "Top" : ("position", 1),
+            "Width" : ("size", 0),
+            "Height" : ("size", 1),
+    }
 
-    _method_translations = {			
+    _method_translations = {
             "Clear" : "clear",
-            "RemoveItem" : "delete",	
+            "RemoveItem" : "delete",
     }
 
     _proxy_for = combobox.ComboBox
@@ -77,7 +77,7 @@ class VBComboBox(VBWidget):
 
         """
         del(self.items[position]) # TODO - this doesn't actually work
-    # -- end -- << VBComboBox methods >>   
+    # -- end -- << VBComboBox methods >>
 
 
 log.debug("Registering VBComboBox as '%s'" % sys.modules[__name__].VBComboBox)

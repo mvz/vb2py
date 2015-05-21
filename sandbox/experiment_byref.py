@@ -25,7 +25,7 @@ if __name__ == "__main__":
             sleep(delay)
             print "Thread %d after x, y = %s, %s" % (n, x, y)
 
-        for delay in (0, .00001, 1):	
+        for delay in (0, .00001, 1):
             t1 = Thread(target=doit, args=(1, locals(), delay))
             t2 = Thread(target=doit, args=(2, locals(), delay))
 

@@ -156,7 +156,7 @@ a = 0
 b = 0
 Do
     c = 0
-    Do 
+    Do
         c = c + 1
         b = b + 1
     Loop Until c > 10
@@ -172,7 +172,7 @@ b = 0
 Do Until a > 10
     b = b + a
     a = a + 1
-Loop 
+Loop
 """, {"a" : 11, "b" : 55}))
 
 
@@ -185,10 +185,10 @@ Do Until a > 10
     Do Until c > 10
         c = c + 1
         b = b + 1
-    Loop 
+    Loop
     b = b + a
     a = a + 1
-Loop 
+Loop
 """, {"a" : 11, "b" : 176, "c" : 11}))
 # -- end -- << While tests >>
 

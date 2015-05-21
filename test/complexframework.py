@@ -24,7 +24,7 @@ def getTestMethod(container, vb, assertions):
         local_dict = {"convertVBtoPython" : convertVBtoPython,
                       "vbfunctions" : vbfunctions}
         # << Parse VB >>
-        try:					  
+        try:
             python = convertVBtoPython(vb, container=container)
         except Exception, err:
             self.fail("Error while parsing (%s)\n%s" % (err, vb))

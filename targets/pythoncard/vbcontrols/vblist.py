@@ -9,31 +9,31 @@ import sys
 from PythonCard import event, registry, widget
 
 
-class VBList(VBWidget): 
-    __metaclass__ = VBWrapped 
+class VBList(VBWidget):
+    __metaclass__ = VBWrapped
 
-    _translations = { 
-            "Text" : "text", 
-            "Enabled" : "enabled", 
-            "Visible" : "visible", 
+    _translations = {
+            "Text" : "text",
+            "Enabled" : "enabled",
+            "Visible" : "visible",
             "List" : "items",
-    } 
+    }
 
     _name_to_method_translations = {
             "ListCount" : ("getNumber", None),
             "ListIndex" : ("getSelectionIndex", None),
     }
 
-    _indexed_translations = { 
-            "Left" : ("position", 0), 
-            "Top" : ("position", 1), 
-            "Width" : ("size", 0), 
-            "Height" : ("size", 1), 
-    } 
+    _indexed_translations = {
+            "Left" : ("position", 0),
+            "Top" : ("position", 1),
+            "Width" : ("size", 0),
+            "Height" : ("size", 1),
+    }
 
-    _method_translations = {			
+    _method_translations = {
             "Clear" : "clear",
-            "RemoveItem" : "delete",	
+            "RemoveItem" : "delete",
     }
 
     _proxy_for = list.List
@@ -50,7 +50,7 @@ class VBList(VBWidget):
             self.append(item)
         else:
             self.insertItems([item], position)
-    # -- end -- << VBList methods >>   
+    # -- end -- << VBList methods >>
 
 log.debug("Registering VBList as '%s'" % sys.modules[__name__].VBList)
 Register(VBList)

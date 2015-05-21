@@ -1,5 +1,5 @@
 from testframework import *
-import os 
+import os
 import vb2py.utils
 PATH = vb2py.utils.rootPath()
 
@@ -45,7 +45,7 @@ Close #3
       'c' : 'you',
 }))
 
-# Bug #810964 Input with indexed variable fails 
+# Bug #810964 Input with indexed variable fails
 tests.append((r"""
 Open "%s/test/testread.txt" For Input As #3
 Dim _a(3) As String
@@ -115,8 +115,8 @@ _c = FreeFile
 a = _a = _b
 b = _a = _c
 c = _b = _c
-d = CStr(_a) & CStr(_b) & CStr(_c) 
-""" % (vb2py.utils.relativePath("test/testread.txt"), 
+d = CStr(_a) & CStr(_b) & CStr(_c)
+""" % (vb2py.utils.relativePath("test/testread.txt"),
        vb2py.utils.relativePath("test/testwrite.txt")),
 {'a':0, 'b':1, 'c':0, 'd': '131',
 }))
@@ -133,20 +133,20 @@ _c = FreeFile
 a = _a = _b
 b = _a = _c
 c = _b = _c
-d = CStr(_a) & CStr(_b) & CStr(_c) 
-""" % (vb2py.utils.relativePath("test/testread.txt"), 
+d = CStr(_a) & CStr(_b) & CStr(_c)
+""" % (vb2py.utils.relativePath("test/testread.txt"),
        vb2py.utils.relativePath("test/testwrite.txt")),
 {'a':0, 'b':1, 'c':0, 'd': '131',
 }))
 
 
-# Bug #810968 Close #1, #2 ' fails to parse 
+# Bug #810968 Close #1, #2 ' fails to parse
 tests.append((r"""
 Open "%s" For Input As #3
 Open "%s" For Output As #4
 Close #3, #4
 Input #3, a
-""" % (vb2py.utils.relativePath("test/testread.txt"), 
+""" % (vb2py.utils.relativePath("test/testread.txt"),
        vb2py.utils.relativePath("test/testwrite.txt")),
 {'FAIL' : 'yes',
 }))

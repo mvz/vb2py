@@ -1,5 +1,5 @@
 from vb2py.vbclasses import Collection
-import unittest 
+import unittest
 
 class TestCollection(unittest.TestCase):
 

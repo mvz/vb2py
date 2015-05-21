@@ -66,7 +66,7 @@ def testCode(code, verbose=0):
     if not test:
         test = [("_dummy", "[1]")]
 
-    for var, value_code in test:		
+    for var, value_code in test:
         #
         values = eval(value_code)
         for value in values:
@@ -80,7 +80,7 @@ def testCode(code, verbose=0):
             else:
                 line = ""
 
-            # Run VB	
+            # Run VB
             try:
                 runTestCode(code, vbhost)
             except Exception, vberr:
@@ -107,7 +107,7 @@ def testCode(code, verbose=0):
             elif pythoncode_failed and vbcode_failed:
                 if verbose:
                     sendOutput("Both failed\n\nVB\n%s\n\nPython\n%s\n%s" % (vberr, pythonerr, python), output, verbose)
-            else:				
+            else:
                 if verbose:
                     sendOutput("\tVB\tPython", output, verbose)
                 for name in vars:
@@ -128,5 +128,5 @@ def testCode(code, verbose=0):
 # -- end -- << Functions >>
 
 if __name__ == "__main__":
-    testCode(code, verbose=1)			
+    testCode(code, verbose=1)
     print "Finished"

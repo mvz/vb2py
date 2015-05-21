@@ -5,7 +5,7 @@ import os
 try:
     from vb2py.utils import rootPath
 except ImportError:
-    from utils import rootPath	
+    from utils import rootPath
 
 mods = []
 for fn in glob.glob(os.path.join(rootPath(), "plugins", "*.py")):

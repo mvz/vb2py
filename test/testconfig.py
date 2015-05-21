@@ -30,7 +30,7 @@ class TestConfig(unittest.TestCase):
             Function f()
             f = 10
             End Function
-            """			
+            """
 
         self.code3 = """
             Select Case a
@@ -101,11 +101,11 @@ class TestConfig(unittest.TestCase):
     # << Config tests >> (6 of 14)
     def testSpaceOrTab(self):
         """testSpaceOrTab: should be change between spaces and tabs"""
-        self.c.setLocalOveride("General", "IndentAmount", 4)	
-        self.c.setLocalOveride("General", "IndentCharacter", "Space")	
+        self.c.setLocalOveride("General", "IndentAmount", 4)
+        self.c.setLocalOveride("General", "IndentCharacter", "Space")
         c_space = convertVBtoPython(self.code1)
-        self.c.setLocalOveride("General", "IndentAmount", 1)	
-        self.c.setLocalOveride("General", "IndentCharacter", "Tab")	
+        self.c.setLocalOveride("General", "IndentAmount", 1)
+        self.c.setLocalOveride("General", "IndentCharacter", "Tab")
         c_tabs = convertVBtoPython(self.code1)
         #
         # Should be different
@@ -116,10 +116,10 @@ class TestConfig(unittest.TestCase):
     # << Config tests >> (7 of 14)
     def testIndentAmount(self):
         """testSpaceOrTab: should be change between spaces and tabs"""
-        self.c.setLocalOveride("General", "IndentAmount", 4)	
-        self.c.setLocalOveride("General", "IndentCharacter", "Space")	
+        self.c.setLocalOveride("General", "IndentAmount", 4)
+        self.c.setLocalOveride("General", "IndentCharacter", "Space")
         c_four = convertVBtoPython(self.code1)
-        self.c.setLocalOveride("General", "IndentAmount", 8)	
+        self.c.setLocalOveride("General", "IndentAmount", 8)
         c_eight = convertVBtoPython(self.code1)
         #
         # Should be different
@@ -130,9 +130,9 @@ class TestConfig(unittest.TestCase):
     # << Config tests >> (8 of 14)
     def testRespectPrivateStatus(self):
         """testRespectPrivateStatus: should be able to turn off data hiding"""
-        self.c.setLocalOveride("General", "RespectPrivateStatus", "Yes")	
+        self.c.setLocalOveride("General", "RespectPrivateStatus", "Yes")
         c_on = convertVBtoPython(self.code2, container=vb2py.vbparser.VBClassModule())
-        self.c.setLocalOveride("General", "RespectPrivateStatus", "No")	
+        self.c.setLocalOveride("General", "RespectPrivateStatus", "No")
         c_off = convertVBtoPython(self.code2, container=vb2py.vbparser.VBClassModule())
         #
         # Should be different
@@ -144,10 +144,10 @@ class TestConfig(unittest.TestCase):
     # << Config tests >> (9 of 14)
     def testPrivateDataPrefix(self):
         """testPrivateDataPrefix: should be able to data hiding prefix"""
-        self.c.setLocalOveride("General", "RespectPrivateStatus", "Yes")	
-        self.c.setLocalOveride("General", "PrivateDataPrefix", "__")	
+        self.c.setLocalOveride("General", "RespectPrivateStatus", "Yes")
+        self.c.setLocalOveride("General", "PrivateDataPrefix", "__")
         c_on = convertVBtoPython(self.code2, container=vb2py.vbparser.VBClassModule())
-        self.c.setLocalOveride("General", "PrivateDataPrefix", "m_")	
+        self.c.setLocalOveride("General", "PrivateDataPrefix", "m_")
         c_off = convertVBtoPython(self.code2, container=vb2py.vbparser.VBClassModule())
         #
         # Should be different
@@ -159,9 +159,9 @@ class TestConfig(unittest.TestCase):
     # << Config tests >> (10 of 14)
     def testFunctionVariable(self):
         """testFunctionVariable: should be able to change function variable"""
-        self.c.setLocalOveride("Functions", "ReturnVariableName", "_ret")	
+        self.c.setLocalOveride("Functions", "ReturnVariableName", "_ret")
         c_ret = convertVBtoPython(self.code2)
-        self.c.setLocalOveride("Functions", "ReturnVariableName", "_other")	
+        self.c.setLocalOveride("Functions", "ReturnVariableName", "_other")
         c_other = convertVBtoPython(self.code2)
         #
         # Should be different
@@ -172,10 +172,10 @@ class TestConfig(unittest.TestCase):
     # << Config tests >> (11 of 14)
     def testPreInitVariable(self):
         """testPreInitVariable: should be able to change if variable is pre initialized"""
-        self.c.setLocalOveride("Functions", "ReturnVariableName", "_ret")	
-        self.c.setLocalOveride("Functions", "PreInitializeReturnVariable", "Yes")	
+        self.c.setLocalOveride("Functions", "ReturnVariableName", "_ret")
+        self.c.setLocalOveride("Functions", "PreInitializeReturnVariable", "Yes")
         c_yes = convertVBtoPython(self.code2)
-        self.c.setLocalOveride("Functions", "PreInitializeReturnVariable", "No")	
+        self.c.setLocalOveride("Functions", "PreInitializeReturnVariable", "No")
         c_no = convertVBtoPython(self.code2)
         #
         # Should be different
@@ -187,10 +187,10 @@ class TestConfig(unittest.TestCase):
     # << Config tests >> (12 of 14)
     def testSelectVariable(self):
         """testSelectVariable: should be able to change select variable"""
-        self.c.setLocalOveride("Select", "UseNumericIndex", "No")	
-        self.c.setLocalOveride("Select", "SelectVariablePrefix", "_ret")	
+        self.c.setLocalOveride("Select", "UseNumericIndex", "No")
+        self.c.setLocalOveride("Select", "SelectVariablePrefix", "_ret")
         c_ret = convertVBtoPython(self.code3)
-        self.c.setLocalOveride("Select", "SelectVariablePrefix", "_other")	
+        self.c.setLocalOveride("Select", "SelectVariablePrefix", "_other")
         c_other = convertVBtoPython(self.code3)
         #
         # Should be different
@@ -201,10 +201,10 @@ class TestConfig(unittest.TestCase):
     # << Config tests >> (13 of 14)
     def testSelectVariableIndex(self):
         """testSelectVariableIndex: should be able to turn off select variable index"""
-        self.c.setLocalOveride("Select", "UseNumericIndex", "Yes")	
-        self.c.setLocalOveride("Select", "SelectVariablePrefix", "_ret")	
+        self.c.setLocalOveride("Select", "UseNumericIndex", "Yes")
+        self.c.setLocalOveride("Select", "SelectVariablePrefix", "_ret")
         c_1 = convertVBtoPython(self.code3)
-        self.c.setLocalOveride("Select", "UseNumericIndex", "No")	
+        self.c.setLocalOveride("Select", "UseNumericIndex", "No")
         c_2 = convertVBtoPython(self.code3)
         #
         # Should be different
@@ -212,14 +212,14 @@ class TestConfig(unittest.TestCase):
     # << Config tests >> (14 of 14)
     def testEvalVariable(self):
         """testEvalVariable: should be able to change whether variable is used once or more than once"""
-        self.c.setLocalOveride("Select", "EvaluateVariable", "Once")	
-        self.c.setLocalOveride("Select", "SelectVariablePrefix", "_ret")	
+        self.c.setLocalOveride("Select", "EvaluateVariable", "Once")
+        self.c.setLocalOveride("Select", "SelectVariablePrefix", "_ret")
         c_1 = convertVBtoPython(self.code3)
-        self.c.setLocalOveride("Select", "EvaluateVariable", "EachTime")	
+        self.c.setLocalOveride("Select", "EvaluateVariable", "EachTime")
         c_2 = convertVBtoPython(self.code3)
         #
         r = re.compile("_ret")
-        self.assert_(len(r.findall(c_1)) > 1)	
+        self.assert_(len(r.findall(c_1)) > 1)
         self.assertEqual(len(r.findall(c_2)), 0)
     # -- end -- << Config tests >>
 

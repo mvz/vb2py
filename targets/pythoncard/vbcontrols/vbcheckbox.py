@@ -9,23 +9,23 @@ import sys
 from PythonCard import event, registry, widget
 
 
-class VBCheckBox(VBWidget): 
-    __metaclass__ = VBWrapped 
+class VBCheckBox(VBWidget):
+    __metaclass__ = VBWrapped
 
-    _translations = { 
-            "Text" : "text", 
-            "Enabled" : "enabled", 
-            "Visible" : "visible", 
+    _translations = {
+            "Text" : "text",
+            "Enabled" : "enabled",
+            "Visible" : "visible",
             "Value" : "checked",
             "Caption" : "label",
-        } 
+        }
 
-    _indexed_translations = { 
-            "Left" : ("position", 0), 
-            "Top" : ("position", 1), 
-            "Width" : ("size", 0), 
-            "Height" : ("size", 1), 
-        } 
+    _indexed_translations = {
+            "Left" : ("position", 0),
+            "Top" : ("position", 1),
+            "Width" : ("size", 0),
+            "Height" : ("size", 1),
+        }
 
     _proxy_for = checkbox.CheckBox
 

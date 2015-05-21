@@ -21,22 +21,22 @@ import logger
 log = logger.getLogger("VBParser")
 # -- end -- << Imports >>
 # << Error Classes >>
-class VBParserError(Exception): 
+class VBParserError(Exception):
     """An error occured during parsing"""
 
-class UnhandledStructureError(VBParserError): 
+class UnhandledStructureError(VBParserError):
     """A structure was parsed but could not be handled by class"""
-class InvalidOption(VBParserError): 
+class InvalidOption(VBParserError):
     """An invalid config option was detected"""
-class NestingError(VBParserError): 
+class NestingError(VBParserError):
     """An error occured while handling a nested structure"""
 class UnresolvableName(VBParserError):
     """We were asked to resolve a name but couldn't because we don't know it"""
 
-class SystemPluginFailure(VBParserError): 
+class SystemPluginFailure(VBParserError):
     """A system level plugin failed"""
 
-class DirectiveError(VBParserError): 
+class DirectiveError(VBParserError):
     """An unknown directive was found"""
 # -- end -- << Error Classes >>
 # << Definitions >>
@@ -72,7 +72,7 @@ def buildParseTree(vbtext, starttoken="line", verbose=0, returnpartial=0, return
 
     nodes = []
     while 1:
-        success, tree, next = parser.parse(txt) 
+        success, tree, next = parser.parse(txt)
         if not success:
             if txt.strip():
                 # << Handle failure >>
@@ -107,7 +107,7 @@ def makeSafeFromUnicode(text):
     result = []
     letters = map(ord, text)
     marker1 = [ord('x'), ord('X')]
-    marker2 = [ord('X'), ord('x')]    
+    marker2 = [ord('X'), ord('x')]
     #
     # Replace all non asc characters with a marker
     for letter in letters:
@@ -189,13 +189,13 @@ def applyPlugins(methodname, txt):
     for plugin in plugins:
         if plugin.isEnabled() and plugin.system_plugin or use_user_plugins:
             try:
-                txt = getattr(plugin, methodname)(txt)	
+                txt = getattr(plugin, methodname)(txt)
             except Exception, err:
                 if plugin.system_plugin:
                     raise SystemPluginFailure(
                         "System plugin '%s' had an exception (%s) while doing %s. Unable to continue" % (
                             plugin.name, err, methodname))
-                else:                        
+                else:
                     log.warn("Plugin '%s' had an exception (%s) while doing %s and will be disabled" % (
                             plugin.name, err, methodname))
                     plugin.disable()
@@ -233,7 +233,7 @@ def parseVBFile(filename, text=None, parent=None, **kw):
     return code_structure
 # -- end -- << Utility functions >>
 
-# The following imports must go at the end to avoid import errors 
+# The following imports must go at the end to avoid import errors
 # caused by poor structuring of the package. This needs to be refactored!
 
 # Plug-ins
@@ -242,6 +242,6 @@ plugins = extensions.loadAllPlugins()
 
 from parserclasses import *
 
-if __name__ == "__main__":	
+if __name__ == "__main__":
     from testparse import txt
     m = parseVB(txt)

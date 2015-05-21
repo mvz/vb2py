@@ -47,14 +47,14 @@ def makeVBClass(cls, init=None):
     #
     return "\n".join(vb)
 # << Functions >> (2 of 3)
-def makeVBClassFile(cls, filename, init=None): 
+def makeVBClassFile(cls, filename, init=None):
     """Make a VB Class file froma class"""
     text = makeVBClass(cls, init)
     f = file(filename, "w")
     f.write(text)
     f.close()
 # << Functions >> (3 of 3)
-def makeVBMethod(cls, method_name): 
+def makeVBMethod(cls, method_name):
     """Make some VB to support the specified method"""
     vb = []
     method = getattr(cls, method_name)
@@ -78,7 +78,7 @@ def makeVBMethod(cls, method_name):
             if value is None:
                 arg_list.append("Optional %s=%s" % (arg, "Nothing"))
             else:
-                arg_list.append("Optional %s=%s" % (arg, repr(value)))				
+                arg_list.append("Optional %s=%s" % (arg, repr(value)))
     #
     vb.extend([
             "",

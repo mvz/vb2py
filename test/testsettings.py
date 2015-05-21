@@ -9,7 +9,7 @@ tests.append(("""
 a = GetSetting("vbtestother", "main", "key", "<default>")
 """, {"a":"<default>"}))
 
-# Simple test of set then get 
+# Simple test of set then get
 tests.append(("""
 SaveSetting "vbtest", "main", "real", 10.5
 SaveSetting "vbtest", "main", "int", 1
@@ -29,7 +29,7 @@ b = GetSetting("vbtest", "main", "int", "mmm")
 c = GetSetting("vbtest", "main", "string", "mmm")
 """, {"a":"10.5", "b":"1", "c":"hello"})) # always returned as a string
 # << Settings tests >> (2 of 3)
-# Simple test of set then getall 
+# Simple test of set then getall
 tests.append(("""
 SaveSetting "vbtest", "main", "real", 10.5
 SaveSetting "vbtest", "main", "int", 1

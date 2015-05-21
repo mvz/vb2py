@@ -1,8 +1,8 @@
 """Plug-in to convert recordset notation to standard notation
 
-eg, 
+eg,
 
-RecordSet!FieldName 
+RecordSet!FieldName
 
 Translates to,
 

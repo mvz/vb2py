@@ -9,7 +9,7 @@ class TranslateAttributes(extensions.SystemPluginREPlugin):
 
     There are attribute like 'Text' and 'Visible' which are in lower
     case in Pythoncard and others are simply different. We do the conversion
-    here. 
+    here.
 
     Note that this means we will convert these names even if they don't belong
     to controls - this is unfortunate but still safe as we do the conversion

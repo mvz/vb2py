@@ -122,7 +122,7 @@ tests.extend([
 tests.extend([
             'a = Trim$("hello")',
             'a = Left$("hello", 4)',
-])			
+])
 
 # Things that failed
 tests.extend([
@@ -598,7 +598,7 @@ tests.extend([
 ])
 
 
-# Bug #809979 - Line ending with a colon fails 
+# Bug #809979 - Line ending with a colon fails
 tests.extend([
     "a = 10:\nb = 20",
     "a = 10: b = 20:\nc=1: d=1: e=2",
@@ -624,7 +624,7 @@ tests.extend([
 ])
 
 
-# Bug #810968 Close #1, #2 ' fails to parse 
+# Bug #810968 Close #1, #2 ' fails to parse
 tests.extend([
     "Close #1, #2, #3, #4",
     "Close 1, 2, 3, 4",
@@ -715,7 +715,7 @@ tests.extend([
     "label: On Error Resume Next ' comment",
 ])
 
-# General on error goto - 
+# General on error goto -
 tests.extend([
     "On Error GoTo 0",
     "On Error GoTo 0 ' comment",
@@ -724,7 +724,7 @@ tests.extend([
 ])
 
 
-# On something goto list 
+# On something goto list
 tests.extend([
     "On var GoTo 20",
     "On var GoTo 10,20,30,40",
@@ -753,7 +753,7 @@ tests.extend([
     "label: On Local Error Resume Next ' comment",
 ])
 
-# Bug #809979 - On Error with : after the label fails 
+# Bug #809979 - On Error with : after the label fails
 tests.extend([
     "On Error GoTo 0:\na=1",
     "On Error GoTo 0: ' comment",
@@ -1461,7 +1461,7 @@ c="hello"
 End Sub
 """)
 # << Parsing tests >> (41 of 61)
-# 852166 Sub X<spc>(a,b,c) fails to parse 
+# 852166 Sub X<spc>(a,b,c) fails to parse
 tests.append("""
 Sub MySub (ByVal a, ByRef y)
 a=10
@@ -1470,7 +1470,7 @@ c="hello"
 End Sub
 """)
 
-# 880612 Continuation character inside call  
+# 880612 Continuation character inside call
 tests.append("""
 Sub MySub _
 (ByVal a, ByRef y)
@@ -1718,7 +1718,7 @@ Property Get MyProp() As Long
 End Property
 """,
 """
-Property Set MyProp(NewObject As Object) 
+Property Set MyProp(NewObject As Object)
  Set MyProp = NewVal
  Exit Property
 End Property
@@ -1734,7 +1734,7 @@ Public Property Get MyProp() As Long
 End Property
 """,
 """
-Public Property Set MyProp(NewObject As Object) 
+Public Property Set MyProp(NewObject As Object)
  Set MyProp = NewVal
 End Property
 """,
@@ -1757,7 +1757,7 @@ tests.extend(["""
 1: End Property
 """,
 """
-1: Property Set MyProp(NewObject As Object) 
+1: Property Set MyProp(NewObject As Object)
 1:  Set MyProp = NewVal
 1: End Property
 """
@@ -1846,7 +1846,7 @@ End Select
 """)
 
 
-# Range case 
+# Range case
 tests.append("""
 Select Case x
 Case "a" To "m"
@@ -1866,7 +1866,7 @@ Case "n" To "z", Is > 10, Is Like "*blah"
 End Select
 """)
 
-# Multiple Range case 
+# Multiple Range case
 tests.append("""
 Select Case x
 Case "a" To "m", "A" To "G", "K" To "P"
@@ -2060,7 +2060,7 @@ tests.append("""
 # Simple do  loop
 tests.append("""
         a = 0
-        Do  
+        Do
             g = 10
             a = a + 1
         Loop
@@ -2069,7 +2069,7 @@ tests.append("""
 # Simple do  with exit
 tests.append("""
         a = 0
-        Do 
+        Do
             g = 10
             a = a + 1
             Exit Do
@@ -2079,10 +2079,10 @@ tests.append("""
 # Nested do  loop
 tests.append("""
         a = 0
-        Do 
+        Do
             g = 10
             a = a + 1
-            Do 
+            Do
                 doit
             Loop
         Loop
@@ -2091,7 +2091,7 @@ tests.append("""
 # Simple do  loop
 tests.append("""
         a = 0
-        Do  
+        Do
             g = 10
             a = a + 1
         Loop While a < 10
@@ -2100,7 +2100,7 @@ tests.append("""
 # Simple do  with exit
 tests.append("""
         a = 0
-        Do 
+        Do
             g = 10
             a = a + 1
             Exit Do
@@ -2110,10 +2110,10 @@ tests.append("""
 # Nested do  loop
 tests.append("""
         a = 0
-        Do 
+        Do
             g = 10
             a = a + 1
-            Do 
+            Do
                 doit
             Loop While a <10
         Loop While a< 10
@@ -2122,7 +2122,7 @@ tests.append("""
 # Simple do  loop
 tests.append("""
         a = 0
-        Do  
+        Do
             g = 10
             a = a + 1
         Loop Until a < 10
@@ -2131,7 +2131,7 @@ tests.append("""
 # Simple do  with exit
 tests.append("""
         a = 0
-        Do 
+        Do
             g = 10
             a = a + 1
             Exit Do
@@ -2141,10 +2141,10 @@ tests.append("""
 # Nested do  loop
 tests.append("""
         a = 0
-        Do 
+        Do
             g = 10
             a = a + 1
-            Do 
+            Do
                 doit
             Loop While a <10
         Loop Until a< 10
@@ -2156,7 +2156,7 @@ tests.append("""
         Do Until a < 10
             g = 10
             a = a + 1
-        Loop 
+        Loop
 """)
 
 # Simple do  with exit
@@ -2166,7 +2166,7 @@ tests.append("""
             g = 10
             a = a + 1
             Exit Do
-        Loop 
+        Loop
 """)
 
 # Nested do  loop
@@ -2177,8 +2177,8 @@ tests.append("""
             a = a + 1
             Do While a <10
                 doit
-            Loop 
-        Loop 
+            Loop
+        Loop
 """)
 # << Parsing tests >> (57 of 61)
 # simple type
@@ -2311,8 +2311,8 @@ End Enum
 # Simple enumeration with comments
 tests.append("""
 Enum MyEnum ' yeah
-    one ' this 
-    two ' is 
+    one ' this
+    two ' is
     three
     four ' neat
     five
@@ -2332,10 +2332,7 @@ class ParsingTest(TestCase):
 def getTestMethod(vb):
     """Create a test method"""
     def testMethod(self):
-        try:
-            buildParseTree(vb)
-        except VBParserError:
-            raise "Unable to parse ...\n%s" % vb
+        buildParseTree(vb)
     return testMethod
 
 #

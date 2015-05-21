@@ -96,21 +96,21 @@ def Dir(path=None):
 def Environ(envstring):
     """Return the String associated with an operating system environment variable
 
-    envstring Optional. String expression containing the name of an environment variable. 
-    number Optional. Numeric expression corresponding to the numeric order of the 
-    environment string in the environment-string table. The number argument can be any 
-    numeric expression, but is rounded to a whole number before it is evaluated. 
+    envstring Optional. String expression containing the name of an environment variable.
+    number Optional. Numeric expression corresponding to the numeric order of the
+    environment string in the environment-string table. The number argument can be any
+    numeric expression, but is rounded to a whole number before it is evaluated.
 
 
     Remarks
 
-    If envstring can't be found in the environment-string table, a zero-length string ("") 
-    is returned. Otherwise, Environ returns the text assigned to the specified envstring; 
+    If envstring can't be found in the environment-string table, a zero-length string ("")
+    is returned. Otherwise, Environ returns the text assigned to the specified envstring;
     that is, the text following the equal sign (=) in the environment-string table for that environment variable.
 
     """
     try:
-        envint = int(envstring)	
+        envint = int(envstring)
     except ValueError:
         return os.environ.get(envstring, "")
     # Is an integer - need to get the envint'th value
@@ -124,7 +124,7 @@ def Erase(*args):
     for array in args:
         array.erase()
 # << VBFunctions >> (8 of 57)
-def EOF(channel): 
+def EOF(channel):
     """Determine if we reached the end of file for the particular channel"""
     return VBFiles.EOF(channel)
 # << VBFunctions >> (9 of 57)
@@ -190,7 +190,7 @@ def InStrRev(text, subtext, start=None, compare=None):
 def Int(num):
     """Return the int of a value"""
     n = float(num)
-    if -32767 <= n <= 32767: 
+    if -32767 <= n <= 32767:
         return int(n)
     else:
         raise ValueError("Out of range in Int (%s)" % n)
@@ -198,7 +198,7 @@ def Int(num):
 def CByte(num):
     """Return the closest byte of a value"""
     n = round(float(num))
-    if 0 <= n <= 255: 
+    if 0 <= n <= 255:
         return int(n)
     else:
         raise ValueError("Out of range in CByte (%s)" % n)
@@ -206,7 +206,7 @@ def CByte(num):
 def CInt(num):
     """Return the closest int of a value"""
     n = round(float(num))
-    if -32767 <= n <= 32767: 
+    if -32767 <= n <= 32767:
         return int(n)
     else:
         raise ValueError("Out of range in Int (%s)" % n)
@@ -278,22 +278,22 @@ def Exp(num):
 def LSet(var, value):
     """Do a VB LSet
 
-    Left aligns a string within a string variable, or copies a variable of one 
+    Left aligns a string within a string variable, or copies a variable of one
     user-defined type to another variable of a different user-defined type.
 
     LSet stringvar = string
 
     LSet replaces any leftover characters in stringvar with spaces.
 
-    If string is longer than stringvar, LSet places only the leftmost characters, 
+    If string is longer than stringvar, LSet places only the leftmost characters,
     up to the length of the stringvar, in stringvar.
 
-    Warning   Using LSet to copy a variable of one user-defined type into a 
-    variable of a different user-defined type is not recommended. Copying data 
+    Warning   Using LSet to copy a variable of one user-defined type into a
+    variable of a different user-defined type is not recommended. Copying data
     of one data type into space reserved for a different data type can cause unpredictable results.
 
-    When you copy a variable from one user-defined type to another, the binary data 
-    from one variable is copied into the memory space of the other, without regard 
+    When you copy a variable from one user-defined type to another, the binary data
+    from one variable is copied into the memory space of the other, without regard
     for the data types specified for the elements.
 
     """
@@ -337,8 +337,8 @@ def RGB(r, g, b):
 def Replace(expression, find, replace, start=1, count=-1):
     """Returns a string in which a specified substring has been replaced with another substring a specified number of times
 
-    The return value of the Replace function is a string, with substitutions made, 
-    that begins at the position specified by start and and concludes at the end of 
+    The return value of the Replace function is a string, with substitutions made,
+    that begins at the position specified by start and and concludes at the end of
     the expression string. It is not a copy of the original string from start to finish.
 
     """
@@ -380,7 +380,7 @@ def RSet(var, value):
 
     RSet stringvar = string
 
-    If stringvar is longer than string, RSet replaces any leftover characters 
+    If stringvar is longer than string, RSet replaces any leftover characters
     in stringvar with spaces, back to its beginning.
 
     """
@@ -588,9 +588,9 @@ def Val(text):
     This function finds the longest leftmost number in the string and
     returns it. If there are no valid numbers then it returns 0.
 
-    The method chosen here is very poor - we just keep trying to convert the 
+    The method chosen here is very poor - we just keep trying to convert the
     string to a float and just use the last successful as we increase
-    the size of the string. A Regular expression approach is probably 
+    the size of the string. A Regular expression approach is probably
     quicker.
 
     """
@@ -606,7 +606,7 @@ def vbForRange(start, stop, step=1):
     """Mimic the range in a for statement
 
     VB's range is inclusive and can include non-integer elements so
-    we use an generator. 
+    we use an generator.
 
     """
     num_repeats = (stop-start)/step
@@ -628,7 +628,7 @@ def vbGetEventArgs(names, arguments):
     directly and therefore assume that they can pass parameters individually.
 
     This function tries to unpack the params from an event object and, if
-    successful, returns them as a tuple. If this fails then it tries to 
+    successful, returns them as a tuple. If this fails then it tries to
     assume that they were already in a tuple and return them that way.
 
     This can still fail if there are keyword arguments ... TODO!
@@ -660,7 +660,7 @@ class VBMissingArgument:
 
     _missing = 1
 # << VBFunctions >> (55 of 57)
-def VBGetMissingArgument(fn, argument_index): 
+def VBGetMissingArgument(fn, argument_index):
     """Return the default value for a particular argument of a function"""
     try:
         args, varargs, varkw, defaults = inspect.getargspec(fn)

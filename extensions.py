@@ -39,14 +39,14 @@ def loadAllPlugins():
                 is_plugin = 0
             if is_plugin:
                 try:
-                    p = cls()               
+                    p = cls()
                     log.info("Added new plug-in: '%s" % p.name)
                     mods.append(p)
                 except Exception, err:
                     log.warn("Error creating plugin '%s' (%s). Class skipped" % (cls, err))
     #
     # Now sort
-    mods.sort()                
+    mods.sort()
     return mods
 # << Plug-in functions >> (2 of 2)
 def disableLogging():
@@ -188,7 +188,7 @@ class RenderHookPlugin(BasePlugin):
         def newRender(obj, indent=0):
             ret = old_render_method(obj, indent)
             return self.addMarkup(indent, ret)
-        #    
+        #
         self.hooked_class.renderAsCode = newRender
     # << RenderHookPlugin methods >> (2 of 2)
     def addMarkup(self, indent, text):

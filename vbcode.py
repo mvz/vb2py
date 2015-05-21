@@ -2,20 +2,20 @@
 
 # << Documentation >>
 #	"""
-#	This module implements a set of classes for describing VB code. The 
+#	This module implements a set of classes for describing VB code. The
 #	structure is,
-#	
+#
 #	- namespace
 #	- module
 #	- function
 #	- block
 #	- line
 #	- variable
-#	
+#
 #	- modules, form modules and classes all inherit from BaseModule
 #	- subs and functions all inherit from BaseFunction
 #	- For, While, Do, Select blocks all inherit from BaseBlock
-#	
+#
 #	"""
 
 
@@ -52,11 +52,11 @@ class BaseNameSpace(object):
 	scope = Str("Dim") | Str("Private") | Str("Public")
 	const = Str("Const")
 
-	array = Str("(") + Rep(name + Rep(delim + name))  + Str(")")	
+	array = Str("(") + Rep(name + Rep(delim + name))  + Str(")")
 	var_with_type = name + Opt(array) + space + Opt(Str("As") + space + name)
 	var_with_no_type = name + Opt(array)
 
-	var = var_with_type | var_with_no_type	
+	var = var_with_type | var_with_no_type
 	declare = scope + space + var + Rep(delim + var_with_type) + Eol
 
 	lexicon = Lexicon([

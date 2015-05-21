@@ -15,10 +15,10 @@ numeric = [
 ]
 
 strings = [
-    ('a="a"',       {'a' : "a"}),	
-    ('b="abcdef"',  {'b' : "abcdef"}),	
-    ("""c="'" """,  {'c' : "'"}),	
-    ('d="g\"\"h\"\"j"""', {'d' : 'g"h"j"'}),	
+    ('a="a"',       {'a' : "a"}),
+    ('b="abcdef"',  {'b' : "abcdef"}),
+    ("""c="'" """,  {'c' : "'"}),
+    ('d="g\"\"h\"\"j"""', {'d' : 'g"h"j"'}),
     (r'd="\"', {'d' : '\\'}),	# Trailing single \ is tough
     (r'd="hello\not"', {'d' : r'hello\not'}),
 ]
@@ -40,10 +40,10 @@ numeric = [
 ]
 
 strings = [
-    ('Let a="a"',       {'a' : "a"}),	
-    ('Let b="abcdef"',  {'b' : "abcdef"}),	
-    ("""Let c="'" """,  {'c' : "'"}),	
-    ('Let d="g\"\"h\"\"j"""', {'d' : 'g"h"j"'}),	
+    ('Let a="a"',       {'a' : "a"}),
+    ('Let b="abcdef"',  {'b' : "abcdef"}),
+    ("""Let c="'" """,  {'c' : "'"}),
+    ('Let d="g\"\"h\"\"j"""', {'d' : 'g"h"j"'}),
     (r'Let d="\"', {'d' : '\\'}),	# Trailing single \ is tough
     (r'Let d="hello\not"', {'d' : r'hello\not'}),
 ]
@@ -66,7 +66,7 @@ numeric_exp = [
 ]
 
 string_exp = [
-    ('a="hello" & "world"', {'a' : "helloworld"}),	
+    ('a="hello" & "world"', {'a' : "helloworld"}),
 ]
 
 tests.extend(numeric_exp)

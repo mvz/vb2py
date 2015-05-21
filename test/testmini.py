@@ -35,7 +35,7 @@ tests.extend([
 ])
 
 
-# Bug #810968 Close #1, #2 ' fails to parse 
+# Bug #810968 Close #1, #2 ' fails to parse
 tests.extend([
     "Close #1, #2, #3, #4",
     "Close 1, 2, 3, 4",

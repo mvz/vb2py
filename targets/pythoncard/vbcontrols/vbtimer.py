@@ -9,8 +9,8 @@ import sys
 from PythonCard import event, registry, widget
 
 
-class VBTimer(VBWidget): 
-    __metaclass__ = VBWrapped 
+class VBTimer(VBWidget):
+    __metaclass__ = VBWrapped
 
     _name_to_method_translations = {
             "Enabled" : ("_getEnabled", "_setEnabled"),
