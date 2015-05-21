@@ -39,7 +39,7 @@ class MAINFORM(Background):
             self.tvTree.LabelEdit = vb2py.custom.comctllib.tvwManual
 
     def on_cmdAdd_mouseClick(self, *args):
-        if self.tvTree.SelectedItem is Nothing:
+        if self.tvTree.SelectedItem is None:
             self.tvTree.Nodes.Add(VBGetMissingArgument(self.tvTree.Nodes.Add, 0), VBGetMissingArgument(self.tvTree.Nodes.Add, 1), self.txtName.Text, self.txtName.Text)
         else:
             self.tvTree.Nodes.Add(self.tvTree.SelectedItem.Key, vb2py.custom.comctllib.tvwChild, self.txtName.Text, self.txtName.Text)
@@ -71,7 +71,7 @@ class MAINFORM(Background):
         self.tvTree.Top = self.tvTree.Top + 10
 
     def on_cmdRemove_mouseClick(self, *args):
-        if self.tvTree.SelectedItem is Nothing:
+        if self.tvTree.SelectedItem is None:
             MsgBox('No selection')
         else:
             self.tvTree.Nodes.Remove(self.tvTree.SelectedItem.Key)

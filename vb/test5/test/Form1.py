@@ -41,7 +41,7 @@ class MAINFORM(Background):
 
     def __Timer1_Timer(self):
         #
-        if Screen.ActiveControl is Nothing:
+        if Screen.ActiveControl is None:
             Debug.Print('No active control')
         else:
             Debug.Print('Active control:', Screen.ActiveControl.Name)
