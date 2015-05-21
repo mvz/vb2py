@@ -12,7 +12,7 @@ So is the layout...
 """
 # -- end -- << Documentation >>
 # << Declarations >>
-import re	    # For text processing
+import re     # For text processing
 import os     # For file processing
 import pprint # For outputting dictionaries
 import sys    # For getting Exec prefix
@@ -264,7 +264,7 @@ class ProjectParser(BaseParser):
     def doValidation(self):
         """Validate that the project was reasonable"""
         #if not self.forms:
-        #	raise VB2PyError("No forms in the project! Nothing to convert")
+        #    raise VB2PyError("No forms in the project! Nothing to convert")
     # -- end -- << class ProjectParser methods >>
 # << VBConverter >> (4 of 15)
 class FileParser(ProjectParser):
@@ -699,7 +699,7 @@ def importTarget(target):
     """Import the target resource"""
     global event_translator, resource
 
-    from targets.pythoncard	import resource
+    from targets.pythoncard import resource
     TargetResource = resource.Resource
 
     try:

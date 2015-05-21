@@ -21,11 +21,11 @@ class TranslateAttributes(extensions.SystemPluginREPlugin):
     __enabled = 0   # If false the plugin will not be called
 
     post_process_patterns = (
-#			(r"\.Text\b", ".text"),
-#			(r"\.Caption\b", ".text"),
-#			(r"\.Visible\b", ".visible"),
-#			(r"\.Enabled\b", ".enabled"),
-#			(r"\.BackColor\b", ".backgroundColor"),
-#			(r"\.ToolTipText\b", ".ToolTipText"),
-#			(r"\.AddItem\b", ".append"),
+#            (r"\.Text\b", ".text"),
+#            (r"\.Caption\b", ".text"),
+#            (r"\.Visible\b", ".visible"),
+#            (r"\.Enabled\b", ".enabled"),
+#            (r"\.BackColor\b", ".backgroundColor"),
+#            (r"\.ToolTipText\b", ".ToolTipText"),
+#            (r"\.AddItem\b", ".append"),
     )

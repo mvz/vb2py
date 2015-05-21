@@ -541,7 +541,7 @@ class Frame(VBControl):
             if hasattr(obj, "Top"):
                 obj.Top += cls.Top
         #for container in cls._getContainerControls():
-        #	container._processChildObjects()
+        #    container._processChildObjects()
 
     _processChildObjects = classmethod(_processChildObjects)
 # << Controls >> (13 of 16)

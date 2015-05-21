@@ -1,4 +1,4 @@
-import re	    # For text processing
+import re     # For text processing
 import os     # For file processing
 import pprint # For outputting dictionaries
 import sys    # For getting Exec prefix

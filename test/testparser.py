@@ -513,34 +513,34 @@ tests.extend([
 tests.extend([
 """
 101: If a < 10 Then
-102:		b=1
+102:        b=1
 103: End If
 """,
 
 """
 101: While a < 0
-102:		b=1
+102:        b=1
 103: Wend
 """,
 
 """
 101: Select Case a
-102:		Case 10
-103:			b= 1
-104:		Case Else
-105:			b=2
+102:        Case 10
+103:            b= 1
+104:        Case Else
+105:            b=2
 103: End Select
 """,
 
 """
 101: For i = 0 To 100
-102:		b=1
+102:        b=1
 103: Next i
 """,
 
 """
 101: Sub a()
-102:		b=1
+102:        b=1
 103: End Sub
 """,
 
@@ -550,34 +550,34 @@ tests.extend([
 tests.extend([
 """
 101 If a < 10 Then
-102		b=1
+102     b=1
 103 End If
 """,
 
 """
 101 While a < 0
-102		b=1
+102     b=1
 103 Wend
 """,
 
 """
 101 Select Case a
-102		Case 10
-103			b= 1
-104		Case Else
-105			b=2
+102     Case 10
+103         b= 1
+104     Case Else
+105         b=2
 103 End Select
 """,
 
 """
 101 For i = 0 To 100
-102		b=1
+102     b=1
 103 Next i
 """,
 
 """
 101 Sub a()
-102		b=1
+102     b=1
 103 End Sub
 """,
 
@@ -970,7 +970,7 @@ End If
 #  If With labels and comment
 tests.append("""
 10: If Not a = 10 Then 'heres a comment
-20:   	b=2  ' antoher here
+20:     b=2  ' antoher here
 30: End If ' here too
 """)
 # << Parsing tests >> (30 of 61)
@@ -2019,11 +2019,11 @@ tests.append("""
 
 # Simple while wend with line numbers
 tests.append("""
-1:		a = 0
-2:		While a < 10
-3:			g = 10
-4:			a = a + 1
-5:		Wend
+1:      a = 0
+2:      While a < 10
+3:          g = 10
+4:          a = a + 1
+5:      Wend
 """)
 # << Parsing tests >> (52 of 61)
 # Simple do while loop
@@ -2253,7 +2253,7 @@ End With
 # General with with just the structure and labels
 tests.append("""
 1: With MyObject
-2: 	a = 10
+2:  a = 10
 3: End With
 """)
 

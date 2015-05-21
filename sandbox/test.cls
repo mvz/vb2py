@@ -11,12 +11,11 @@ End Function
 
 Public Function isValidSolution(soln, reason)
    ' Return false for a last chance to veto this solution
-   ' 
-   ' 		If this method returns false then, by default, the children of this packet
-   ' 		will be processed normally. If you don't want this to happen then you should
-   ' 		also set the status of the packet to INVALID.
-   ' 
-   ' 		
+   '
+   '   If this method returns false then, by default, the children of this packet
+   '   will be processed normally. If you don't want this to happen then you should
+   '   also set the status of the packet to INVALID.
+   '
    isValidSolution = myObj.isValidSolution(soln, reason)
 End Function
 

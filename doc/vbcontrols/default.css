@@ -11,9 +11,9 @@ h1 {
     font-family : ariel;
     background-color : wheat;
     padding : 5;
-	border-width : thin;
-	border-style : solid;
-	border-color : black;
+    border-width : thin;
+    border-style : solid;
+    border-color : black;
     text-align : center;
 }
 
@@ -23,9 +23,9 @@ h2 {
     font-family : ariel;
     background-color : oldlace;
     padding : 5;
-	border-width : thin;
-	border-style : solid;
-	border-color : black;
+    border-width : thin;
+    border-style : solid;
+    border-color : black;
 }
 
 
@@ -35,9 +35,9 @@ table {
 
 
 th.code-header {
-	border-width : thin;
-	border-style : solid;
-	border-color : black;
+    border-width : thin;
+    border-style : solid;
+    border-color : black;
     background-color : rgb(191, 223, 255);
 }
 
@@ -45,9 +45,9 @@ th.code-header {
 td.vb-code-cell {
     padding : 10;
     background-color : rgb(255, 255, 204);    
-	border-width : thin;
-	border-style : solid;
-	border-color : black;
+    border-width : thin;
+    border-style : solid;
+    border-color : black;
     vertical-align : middle;
     font-family : Courier;
     font-size : 12;
@@ -57,9 +57,9 @@ td.vb-code-cell {
 td.python-code-cell {
     padding : 10;
     background-color : rgb(204, 255, 204);    
-	border-width : thin;
-	border-style : solid;
-	border-color : black;
+    border-width : thin;
+    border-style : solid;
+    border-color : black;
     vertical-align : middle;
     font-family : Courier;
     font-size : 12;
@@ -81,9 +81,9 @@ li {
 }
 
 pre.literal-block {
-	border-width : thin;
-	border-style : solid;
-	border-color : grey;
+    border-width : thin;
+    border-style : solid;
+    border-color : grey;
     background-color : AliceBlue;
     padding : 10;
 }

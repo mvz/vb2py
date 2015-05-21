@@ -300,7 +300,7 @@ class VBNamespace(object):
             try:
                 return self.parent.isAFunction(name)
             except (AttributeError, UnresolvableName):
-                return 0	# Nobody knew the name so we can't know if it is or not
+                return 0 # Nobody knew the name so we can't know if it is or not
     # << VBNamespace methods >> (20 of 28)
     def processElement(self, element):
         """Process our tree"""
@@ -376,7 +376,7 @@ class VBNamespace(object):
             try:
                 return self.parent.resolveName(name, rendering_locals, requestedby=requestedby)
             except AttributeError:
-                return name	# Nobody knew the name so it must be local
+                return name # Nobody knew the name so it must be local
     # << VBNamespace methods >> (26 of 28)
     def searchParentProperty(self, name):
         """Search for any ancestor who has the named parameter set to true
@@ -574,10 +574,10 @@ class VBVariable(VBNamespace):
         self.unsized_definition = None
 
         self.auto_class_handlers = {
-            "expression"	: (VBExpression, "expression"),
-            "size"	: (VBSizeDefinition, self.size_definitions),
-            "size_range"	: (VBSizeDefinition, self.size_definitions),
-            "unsized_definition"	: (VBConsumer, "unsized_definition"),
+            "expression" : (VBExpression, "expression"),
+            "size" : (VBSizeDefinition, self.size_definitions),
+            "size_range" : (VBSizeDefinition, self.size_definitions),
+            "unsized_definition" : (VBConsumer, "unsized_definition"),
         }
     # << VBVariable methods >> (2 of 3)
     def finalizeObject(self):
@@ -606,8 +606,8 @@ class VBSizeDefinition(VBNamespace):
         self.size_ranges = []
         #
         self.auto_class_handlers = {
-            "size"	: (VBExpression, self.sizes),
-            "size_range"	: (VBSizeDefinition, self.size_ranges),
+            "size" : (VBExpression, self.sizes),
+            "size_range" : (VBSizeDefinition, self.size_ranges),
         }
     # << VBSizeDefinition methods >> (2 of 2)
     def renderAsCode(self, indent=0):
@@ -739,7 +739,7 @@ class VBParameterList(VBCodeBlock):
         # elsewhere since __call__ is mapped to __getitem__ for array types
         if self.searchParentProperty("brackets_are_indexes"):
             fmt = "[%s]"
-            self.brackets_are_indexes = StopSearch	# Prevents double accounting in a(b(5)) expressions where b is a function
+            self.brackets_are_indexes = StopSearch # Prevents double accounting in a(b(5)) expressions where b is a function
         else:
             fmt = "(%s)"
         #
@@ -791,7 +791,7 @@ class VBExpression(VBNamespace):
         super(VBExpression, self).__init__(scope)
         self.parts = []
         self.auto_class_handlers.update({
-            "sign"	: (VBExpressionPart, self.parts),
+            "sign" : (VBExpressionPart, self.parts),
             "pre_not" : (VBExpressionPart, self.parts),
             "par_expression" : (VBParExpression, self.parts),
             "point" : (VBPoint, self.parts),
@@ -848,7 +848,7 @@ class VBParExpression(VBNamespace):
             "pre_not" : (VBExpressionPart, self.parts),
             "pre_typeof" : (VBUnrendered, self.parts),
             "point" : (VBPoint, self.parts),
-            "sign"	: (VBExpressionPart, self.parts),
+            "sign" : (VBExpressionPart, self.parts),
         })
 
         self.l_bracket = self.r_bracket = ""

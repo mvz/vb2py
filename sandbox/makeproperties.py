@@ -389,7 +389,7 @@ if __name__=='__main__':
         properties = controls[control].properties.keys()
         properties.sort()
         l("    *Properties*\n%s" % ("\n\n".join(["        %s" %
-                    prop for prop in properties]),)	)
+                    prop for prop in properties]),))
 
         methods = controls[control].methods.keys()
         methods.sort()
