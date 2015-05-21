@@ -2,7 +2,9 @@ from vb2py.utils import rootPath
 import ConfigParser
 import os
 
+
 class VB2PYConfigObject(dict):
+
     """A dictionary of configuration options
 
     Options are accessed via a tuple
@@ -48,7 +50,7 @@ class VB2PYConfigObject(dict):
 
     def checkValue(self, section, name):
         """Make sure we have this section and name"""
-        dummy = self[section, name]
+        self[section, name]
 
     def getItemNames(self, section):
         """Return the list of items in a section"""
@@ -62,6 +64,7 @@ class VB2PYConfigObject(dict):
 #
 # We always want people to use the same one
 _VB2PYConfig = VB2PYConfigObject()
+
 
 def VB2PYConfig(init=0):
     ret = _VB2PYConfig

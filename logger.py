@@ -5,16 +5,19 @@ import fnmatch
 from vb2py.config import VB2PYConfig
 Config = VB2PYConfig()
 
+
 class VB2PYLogger(logging.StreamHandler):
+
     """Logger which can do some interesting filtering"""
 
-    allowed = [] # Loggers which can report
-    blocked = [] # Loggers which can't report
+    allowed = []  # Loggers which can report
+    blocked = []  # Loggers which can't report
 
     def filter(self, record):
         """Filter logging events"""
         for allow in self.allowed:
-            if fnmatch.fnmatch(record.name, allow) and not record.name in self.blocked:
+            if (fnmatch.fnmatch(record.name, allow) and
+                    record.name not in self.blocked):
                 return 1
 
     def initConfiguration(self, conf):
@@ -30,6 +33,7 @@ class VB2PYLogger(logging.StreamHandler):
 main_handler = VB2PYLogger()
 main_handler.setFormatter(logging.Formatter(logging.BASIC_FORMAT))
 main_handler.initConfiguration(Config)
+
 
 def getLogger(name, level=None):
     """Create a logger with the usual settings"""

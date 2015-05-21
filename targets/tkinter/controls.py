@@ -1,21 +1,20 @@
 twips_per_pixel = 15
 
 
-# << SupportedControls >> (1 of 2)
 class VBControl:
+
     """Base class for all VB controls"""
 
     pycard_name = "VBControl"
-    is_container = 0 # 1 for container classes like frames
+    is_container = 0  # 1 for container classes like frames
 
     _attribute_translations = {
-                "Visible" : "visible",
-                "BackColor" : "backgroundColor",
-                "ForeColor" : "foregroundColor",
-                "ToolTipText" : "toolTip",
-                }
+        "Visible": "visible",
+        "BackColor": "backgroundColor",
+        "ForeColor": "foregroundColor",
+        "ToolTipText": "toolTip",
+    }
 
-    # << class VBControl methods >> (1 of 11)
     def _getPropertyList(cls):
         """Return a list of the properties of this control"""
         items = []
@@ -25,7 +24,7 @@ class VBControl:
         return items
 
     _getPropertyList = classmethod(_getPropertyList)
-    # << class VBControl methods >> (2 of 11)
+
     def _getControlList(cls):
         """Return a list of the controls contained in this control"""
         items = []
@@ -35,7 +34,7 @@ class VBControl:
         return items
 
     _getControlList = classmethod(_getControlList)
-    # << class VBControl methods >> (3 of 11)
+
     def _getControlsOfType(cls, type_name):
         """Return a control with a given type"""
         lst = []
@@ -47,7 +46,7 @@ class VBControl:
         return lst
 
     _getControlsOfType = classmethod(_getControlsOfType)
-    # << class VBControl methods >> (4 of 11)
+
     def _getContainerControls(cls):
         """Return all container controls"""
         lst = []
@@ -64,7 +63,7 @@ class VBControl:
         return lst
 
     _getContainerControls = classmethod(_getContainerControls)
-    # << class VBControl methods >> (5 of 11)
+
     def _get(cls, name, default=None):
         """Get one of our items"""
         try:
@@ -76,13 +75,13 @@ class VBControl:
                 raise
 
     _get = classmethod(_get)
-    # << class VBControl methods >> (6 of 11)
+
     def _realName(cls):
         """Return our real name"""
         return cls.__name__[6:]
 
     _realName = classmethod(_realName)
-    # << class VBControl methods >> (7 of 11)
+
     def _getControlEntry(cls):
         """Return the pycard representation of this object"""
         #
@@ -90,7 +89,7 @@ class VBControl:
         d = {}
         ret = [d]
         d['name'] = cls._realName()
-        d['position'] = (cls.Left/twips_per_pixel, cls.Top/twips_per_pixel)
+        d['position'] = (cls.Left / twips_per_pixel, cls.Top / twips_per_pixel)
         d['type'] = cls.pycard_name
         #
         for attr, pycard_attr in cls._attribute_translations.iteritems():
@@ -110,7 +109,7 @@ class VBControl:
         return ret
 
     _getControlEntry = classmethod(_getControlEntry)
-    # << class VBControl methods >> (8 of 11)
+
     def _getClassSpecificControlEntries(cls):
         """Return additional items for this entry
 
@@ -119,25 +118,27 @@ class VBControl:
         """
         return {}
 
-    _getClassSpecificControlEntries = classmethod(_getClassSpecificControlEntries)
-    # << class VBControl methods >> (9 of 11)
+    _getClassSpecificControlEntries = classmethod(
+        _getClassSpecificControlEntries)
+
     def _mapNameReference(cls, match):
         """Map a reference to this object in code to something meaningful
 
-        We have two issues, scope and attributes. The scope we need to map to self.components
-        That was easy. But we also need to map attributes. We can't do that in the base class
-        but a subclass can hopefully help us out via the _attributeTranslationClass
+        We have two issues, scope and attributes. The scope we need to map to
+        self.components That was easy. But we also need to map attributes. We
+        can't do that in the base class but a subclass can hopefully help us
+        out via the _attributeTranslationClass
 
         """
         if match.groups()[0] is not None:
-            return "self.components.%s.%s" % (cls._realName(),
-                                              cls._attributeTranslation(match.groups()[0]))
+            return "self.components.%s.%s" % (
+                cls._realName(),
+                cls._attributeTranslation(match.groups()[0]))
         else:
             return "self.components.%s" % (cls._realName(),)
 
-
     _mapNameReference = classmethod(_mapNameReference)
-    # << class VBControl methods >> (10 of 11)
+
     def _attributeTranslation(cls, name):
         """Convert a VB attribute to a Python one"""
         try:
@@ -146,22 +147,23 @@ class VBControl:
             return VBControl._attribute_translations.get(name, name)
 
     _attributeTranslation = classmethod(_attributeTranslation)
-    # << class VBControl methods >> (11 of 11)
-    def _processChildObjects(cls):
-        """Before we deal with our child object we get a chance to do some processing
 
-        Sub-classed can use this to do special things, like frames adjusting the
-        properties of our children
+    def _processChildObjects(cls):
+        """Before we deal with our child object we get a chance to do some
+        processing
+
+        Sub-classed can use this to do special things, like frames adjusting
+        the properties of our children
 
         """
         for container in cls._getContainerControls():
             container._processChildObject()
 
     _processChildObjects = classmethod(_processChildObjects)
-    # -- end -- << class VBControl methods >>
-# << SupportedControls >> (2 of 2)
-# << Controls >> (1 of 11)
+
+
 class Menu(VBControl):
+
     """Menu"""
     pycard_name = "Menu"
 
@@ -174,23 +176,26 @@ class Menu(VBControl):
     def _pyCardMenuEntry(cls):
         """Return the entry for this menu"""
         return {
-                    "type" : "Menu",
-                    "name" : cls._realName(),
-                    "label" : cls.Caption,
-             }
+            "type": "Menu",
+                    "name": cls._realName(),
+                    "label": cls.Caption,
+        }
 
     _pyCardMenuEntry = classmethod(_pyCardMenuEntry)
-# << Controls >> (2 of 11)
+
+
 class CommandButton(VBControl):
     pycard_name = "Button"
 
     def _getClassSpecificControlEntries(cls):
         """Return additional items for this entry"""
-        return {  "label" : cls.Caption,
+        return {"label": cls.Caption,
                 }
 
-    _getClassSpecificControlEntries = classmethod(_getClassSpecificControlEntries)
-# << Controls >> (3 of 11)
+    _getClassSpecificControlEntries = classmethod(
+        _getClassSpecificControlEntries)
+
+
 class ComboBox(VBControl):
     pycard_name = "ComboBox"
 
@@ -204,87 +209,101 @@ class ComboBox(VBControl):
         lst = []
         for i in range(num):
             length = ord(raw[ptr])
-            lst.append(raw[ptr+2:ptr+2+length])
-            ptr += 2+length
+            lst.append(raw[ptr + 2:ptr + 2 + length])
+            ptr += 2 + length
         return lst
 
     _getEntriesFromFRX = classmethod(_getEntriesFromFRX)
 
-
     def _getClassSpecificControlEntries(cls):
         """Return additional items for this entry"""
-        d = {"size" : (cls.Width/twips_per_pixel, cls.Height/twips_per_pixel)}
+        d = {
+            "size": (cls.Width / twips_per_pixel, cls.Height / twips_per_pixel)
+            }
         if hasattr(cls, "List"):
-            d["items"] =  cls._getEntriesFromFRX(cls.List)
+            d["items"] = cls._getEntriesFromFRX(cls.List)
         else:
             d["items"] = []
         return d
 
-    _getClassSpecificControlEntries = classmethod(_getClassSpecificControlEntries)
-# << Controls >> (4 of 11)
+    _getClassSpecificControlEntries = classmethod(
+        _getClassSpecificControlEntries)
+
+
 class ListBox(ComboBox):
     pycard_name = "List"
-# << Controls >> (5 of 11)
+
+
 class Label(VBControl):
     pycard_name = "StaticText"
 
     def _getClassSpecificControlEntries(cls):
         """Return additional items for this entry"""
-        return {  "text" : cls.Caption,
+        return {"text": cls.Caption,
                 }
 
-    _getClassSpecificControlEntries = classmethod(_getClassSpecificControlEntries)
-# << Controls >> (6 of 11)
+    _getClassSpecificControlEntries = classmethod(
+        _getClassSpecificControlEntries)
+
+
 class CheckBox(VBControl):
     pycard_name = "CheckBox"
 
     _attribute_translations = {
-                    "Value" : "checked",
-                    }
+        "Value": "checked",
+    }
     _attribute_translations.update(VBControl._attribute_translations)
 
     def _getClassSpecificControlEntries(cls):
         """Return additional items for this entry"""
-        return {  "label" : cls.Caption,
-                  "checked" : cls._get("Value", 0),
+        return {"label": cls.Caption,
+                "checked": cls._get("Value", 0),
                 }
 
-    _getClassSpecificControlEntries = classmethod(_getClassSpecificControlEntries)
-# << Controls >> (7 of 11)
+    _getClassSpecificControlEntries = classmethod(
+        _getClassSpecificControlEntries)
+
+
 class TextBox(VBControl):
     pycard_name = "TextField"
 
     _attribute_translations = {
-                    "Text" : "text",
-                    }
+        "Text": "text",
+    }
     _attribute_translations.update(VBControl._attribute_translations)
 
     def _getClassSpecificControlEntries(cls):
         """Return additional items for this entry"""
-        return {  "text" : cls.Text,
+        return {"text": cls.Text,
                 }
 
-    _getClassSpecificControlEntries = classmethod(_getClassSpecificControlEntries)
-# << Controls >> (8 of 11)
+    _getClassSpecificControlEntries = classmethod(
+        _getClassSpecificControlEntries)
+
+
 class Form(VBControl):
+
     """Form"""
 
-    HeightModifier = 20 # Used to account for form borders
-    MenuHeight = 30 # Allows for menu
+    HeightModifier = 20  # Used to account for form borders
+    MenuHeight = 30  # Allows for menu
     Caption = "Form"
-# << Controls >> (9 of 11)
+
+
 class Frame(VBControl):
+
     """Frame"""
     pycard_name = "StaticBox"
     is_container = 1
 
     def _getClassSpecificControlEntries(cls):
         """Return additional items for this entry"""
-        return {  "size" : (cls.Width/twips_per_pixel, cls.Height/twips_per_pixel),
-                }
+        return {
+            "size": (cls.Width / twips_per_pixel, cls.Height / twips_per_pixel)
+        }
 
-    _getClassSpecificControlEntries = classmethod(_getClassSpecificControlEntries)
-
+    _getClassSpecificControlEntries = classmethod(
+        _getClassSpecificControlEntries)
 
     def _processChildObjects(cls):
         """Adjust the left and top properties of our children"""
@@ -295,23 +314,27 @@ class Frame(VBControl):
                 obj.Left += cls.Left
             if hasattr(obj, "Top"):
                 obj.Top += cls.Top
-        #for container in cls._getContainerControls():
+        # for container in cls._getContainerControls():
         #    container._processChildObjects()
 
     _processChildObjects = classmethod(_processChildObjects)
-# << Controls >> (10 of 11)
+
+
 class OptionButton(VBControl):
     pycard_name = "RadioGroup"
 
     def _getClassSpecificControlEntries(cls):
         """Return additional items for this entry"""
-        return {  "items" : cls.items,
-                  "selected" : cls.selected,
+        return {"items": cls.items,
+                "selected": cls.selected,
                 }
 
-    _getClassSpecificControlEntries = classmethod(_getClassSpecificControlEntries)
-# << Controls >> (11 of 11)
+    _getClassSpecificControlEntries = classmethod(
+        _getClassSpecificControlEntries)
+
+
 class VBUnknownControl(Label):
+
     """A control representing an unknown control
 
     We fake it out as a label
@@ -319,25 +342,23 @@ class VBUnknownControl(Label):
     """
 
     Caption = "Unknown control"
-# -- end -- << Controls >>
 
 possible_controls = {
-    "VBControl" : "VBControl",
-    "Form" : "Form",
-    "CommandButton" : "CommandButton",
-    "OptionButton" : "OptionButton",
-    "TextBox" : "TextBox",
-    "Label" : "Label",
-    "Menu" : "Menu",
-    "ComboBox" : "ComboBox",
-    "ListBox" : "ListBox",
-    "CheckBox" : "CheckBox",
-    "Frame" : "Frame",
+    "VBControl": "VBControl",
+    "Form": "Form",
+    "CommandButton": "CommandButton",
+    "OptionButton": "OptionButton",
+    "TextBox": "TextBox",
+    "Label": "Label",
+    "Menu": "Menu",
+    "ComboBox": "ComboBox",
+    "ListBox": "ListBox",
+    "CheckBox": "CheckBox",
+    "Frame": "Frame",
 
-    "VBUnknownControl" : "VBUnknownControl",
-    "FileListBox" : "VBUnknownControl",
-    "Timer" : "VBUnknownControl",
-    "OLE" : "VBUnknownControl",
-    "Shape" : "VBUnknownControl",
+    "VBUnknownControl": "VBUnknownControl",
+    "FileListBox": "VBUnknownControl",
+    "Timer": "VBUnknownControl",
+    "OLE": "VBUnknownControl",
+    "Shape": "VBUnknownControl",
 }
-# -- end -- << SupportedControls >>
