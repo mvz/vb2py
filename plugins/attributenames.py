@@ -3,6 +3,7 @@ try:
 except ImportError:
     import extensions
 
+# TODO: This class can be removed
 class TranslateAttributes(extensions.SystemPluginREPlugin):
     """Plugin to convert attribute names from VB to Pythoncard
 

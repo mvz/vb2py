@@ -1,7 +1,7 @@
 import glob
 import os
 
-# Depends who imports us ... don't understand this
+# FIXME: Depends who imports us ... don't understand this
 try:
     from vb2py.utils import rootPath
 except ImportError:
