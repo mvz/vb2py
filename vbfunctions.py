@@ -4,10 +4,10 @@ Functions to mimic VB intrinsic functions or things
 
 from __future__ import generators
 
-from vbclasses import *
-from vbconstants import *
-import utils
-import config
+from vb2py.vbclasses import *
+from vb2py.vbconstants import *
+from vb2py import utils
+from vb2py import config
 
 import math
 import sys

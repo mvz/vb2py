@@ -14,19 +14,17 @@ So is the layout...
 # << Declarations >>
 import re     # For text processing
 import os     # For file processing
-import pprint # For outputting dictionaries
 import sys    # For getting Exec prefix
 import getopt # For command line arguments
-import imp    # For dynamic import of classes
 
-from utils import rootPath
-from config import VB2PYConfig
+from vb2py.utils import rootPath
+from vb2py.config import VB2PYConfig
 Config = VB2PYConfig()
 
-import logger   # For logging output and debugging
+from vb2py import logger   # For logging output and debugging
 log = logger.getLogger("vb2Py")
 
-import vbparser
+from vb2py import vbparser
 
 #from controls import *
 twips_per_pixel = 15

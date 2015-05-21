@@ -1,8 +1,8 @@
-import vbparser
-from config import VB2PYConfig
+from vb2py import vbparser
+from vb2py.config import VB2PYConfig
 Config = VB2PYConfig()
 
-import logger   # For logging output and debugging
+from vb2py import logger   # For logging output and debugging
 log = logger.getLogger("PythonCardControls")
 
 twips_per_pixel = 15

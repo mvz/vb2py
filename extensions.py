@@ -4,18 +4,18 @@ import glob
 import os
 import imp
 
-from utils import rootPath
-from config import VB2PYConfig
+from vb2py.utils import rootPath
+from vb2py.config import VB2PYConfig
 
 Config = VB2PYConfig()
 
-import logger
+from vb2py import logger
 log = logger.getLogger("PlugInLoader")
 
 # << Plug-in functions >> (1 of 2)
 def loadAllPlugins():
     """Load all plug-ins from the plug-in directory and return a list of all the classes"""
-    import plugins
+    from vb2py import plugins
     mods = []
     for mod in plugins.mods:
         log.info("Checking '%s' for plugins" % mod)

@@ -6,8 +6,8 @@ import getopt # For command line arguments
 
 # TODO: refactor out this ugliness
 
-from converter import BaseResource
-import vbparser
+from vb2py.converter import BaseResource
+from vb2py import vbparser
 from controls import *
 
 

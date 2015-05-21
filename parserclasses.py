@@ -2744,7 +2744,7 @@ class VBParserFailure(VBConsumer):
         return warn
 # -- end -- << Classes >>
 
-from vbparser import *
+from vb2py.vbparser import *
 
 # Blocks which do not contain valid statements
 # If a block contains only these then it needs a pass

@@ -1,4 +1,4 @@
-from utils import rootPath
+from vb2py.utils import rootPath
 import ConfigParser
 import os
 
