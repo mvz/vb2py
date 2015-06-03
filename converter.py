@@ -697,7 +697,7 @@ def importTarget(target):
     """Import the target resource"""
     global event_translator, resource
 
-    from targets.pythoncard import resource
+    from vb2py.targets.pythoncard import resource
     TargetResource = resource.Resource
 
     try:
