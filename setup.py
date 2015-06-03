@@ -59,6 +59,9 @@ def makeDataDirs(rootDir=APPLICATION_NAME, dataDirs=[]):
 
     return listX
 
+data_files = makeDataDirs(dataDirs=["./targets", "./test", "./doc", "./vb"])
+data_files.append((APPLICATION_NAME, ['vb2py.ini', 'vbgrammar.txt']))
+
 setup(name=APPLICATION_NAME,
       version="0.2.3",
       description="Visual Basic to Python Converter",
@@ -69,5 +72,5 @@ setup(name=APPLICATION_NAME,
       package_dir = { APPLICATION_NAME: './vb2py' },
       license="BSD",
       cmdclass = { 'install_data': smart_install_data},
-      data_files=makeDataDirs(dataDirs=[".", "./test", "./vb", "./doc", "./vb"]),
+      data_files = data_files,
      )
