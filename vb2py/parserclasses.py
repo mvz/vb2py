@@ -2,7 +2,6 @@
 
 StopSearch = -9999  # Used to terminate searches for parent properties
 
-
 class VBElement(object):
 
     """An element of VB code"""
@@ -2864,6 +2863,7 @@ class VBParserFailure(VBConsumer):
         #
         return warn
 
+# FIXME: Circular import!
 from vb2py.vbparser import *
 
 # Blocks which do not contain valid statements
