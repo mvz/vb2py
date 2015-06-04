@@ -4,7 +4,7 @@ import os
 import imp
 import re
 
-from vb2py.utils import rootPath
+from vb2py.utils import modulePath
 from vb2py.config import VB2PYConfig
 
 Config = VB2PYConfig()
@@ -21,7 +21,7 @@ def loadAllPlugins():
     for mod in plugins.mods:
         log.info("Checking '%s' for plugins" % mod)
         #
-        f = open(os.path.join(rootPath(), "plugins", "%s.py" % mod), "r")
+        f = open(os.path.join(modulePath(), "plugins", "%s.py" % mod), "r")
         try:
             try:
                 m = imp.load_module(
