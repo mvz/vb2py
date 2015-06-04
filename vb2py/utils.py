@@ -1,10 +1,15 @@
 import os
 import sys
 
-# << Utilities >>
+# TODO: use modulePath everywhere.
+# This means all data will have to always live under that directory as well.
 def rootPath():
     """Return the root path"""
     return os.path.join(os.path.abspath(__file__).split("vb2py")[0], "vb2py")
+
+def modulePath():
+    """Return the module path"""
+    return os.path.abspath(os.path.join(__file__, ".."))
 
 
 def relativePath(path):
