@@ -17,7 +17,6 @@ import os     # For file processing
 import sys    # For getting Exec prefix
 import getopt # For command line arguments
 
-from vb2py.utils import rootPath
 from vb2py.config import VB2PYConfig
 Config = VB2PYConfig()
 
@@ -25,9 +24,6 @@ from vb2py import logger   # For logging output and debugging
 log = logger.getLogger("vb2Py")
 
 from vb2py import vbparser
-
-#from controls import *
-twips_per_pixel = 15
 
 __app_name__ = "VB2Py"
 __version__ = "0.2.2"
@@ -535,96 +531,6 @@ class ClassParser(ModuleParser):
         """Return the container to use for code conversion"""
         return vbparser.VBClassModule(modulename=self.name, classname=self.name)
     # -- end -- << class ClassParser methods >>
-# << VBConverter >> (8 of 15)
-class BaseResource(object):
-    """A VB form resource object"""
-
-    target_name = "Python"
-    name = "baseResource"
-    form_class_name = "FormClass"
-    form_super_classes = []
-    allow_new_style_class = 1
-
-    # << class BaseResource methods >> (1 of 5)
-    def __init__(self, basesourcefile=None):
-        """Initialize the resource"""
-        if basesourcefile is None:
-            self.basesourcefile = os.path.join(
-                        rootPath(), "targets", self.target_name, "basesource")
-        else:
-            self.basesourcefile = basesourcefile
-        #
-        # Apply default resource
-        self._rsc = {}
-        self._code = ""
-        #
-        log.debug("BaseResource init")
-    # << class BaseResource methods >> (2 of 5)
-    def updateFrom(self, form):
-        """Update our resource from the form object"""
-        # << Main properties >>
-        #
-        # The main properties of the form
-        d = self._rsc['application']['backgrounds'][0]
-        self.name = form.name
-        d['name'] = form.name
-        d['title'] = form.Caption
-
-        #
-        # Add menu height to form height if it is needed
-        if form._getControlsOfType("Menu"):
-            height_modifier = form.HeightModifier + form.MenuHeight
-        else:
-            height_modifier = form.HeightModifier
-
-        d['size'] = (form.ClientWidth/twips_per_pixel, form.ClientHeight/twips_per_pixel+height_modifier)
-        d['position'] = (form.ClientLeft/twips_per_pixel, form.ClientTop/twips_per_pixel)
-        # -- end -- << Main properties >>
-        # << Components >>
-        #
-        # The components (controls) on the form
-        c = self._rsc['application']['backgrounds'][0]['components']
-
-        for cmp in form._getControlList():
-            obj = form._get(cmp)
-            entry = obj._getControlEntry()
-            if entry:
-                c += entry
-        # -- end -- << Components >>
-        # << Menus >>
-        #
-        # The menus
-        m = []
-        self._rsc['application']['backgrounds'][0]['menubar']['menus'] = m
-
-        self.addMenus(form, m)
-        # -- end -- << Menus >>
-    # << class BaseResource methods >> (3 of 5)
-    def updateCode(self, form):
-        """Update our code blocks"""
-        #
-        # Make sure the code structure has the right context
-        form.code_structure.classname = self.form_class_name
-        form.code_structure.superclasses = self.form_super_classes
-        form.code_structure.allow_new_style_class = self.allow_new_style_class
-        #
-        # Convert it to Python code
-        self.code_structure = form.code_structure
-    # << class BaseResource methods >> (4 of 5)
-    def addMenus(self, obj, to_menu):
-        """Add menus"""
-        for mnu in obj._getControlsOfType("Menu"):
-            d = mnu._pyCardMenuEntry()
-            d["items"] = []
-            to_menu.append(d)
-            self.addMenus(mnu, d['items'])
-            if not d['items']:
-                del(d['items'])
-                d['type'] = 'MenuItem'
-    # << class BaseResource methods >> (5 of 5)
-    def writeToFile(self, basedir, write_code=0):
-        """Write ourselves out to a directory"""
-    # -- end -- << class BaseResource methods >>
 # << VBConverter >> (9 of 15)
 class ExternalRefParser(ModuleParser):
     """Handlers writing out of external references"""
