@@ -1,3 +1,4 @@
+# 
 # << Documentation >>
 """VB2Py - VB to Python + PythonCard conversion
 

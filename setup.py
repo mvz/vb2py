@@ -73,4 +73,5 @@ setup(name=APPLICATION_NAME,
       license="BSD",
       cmdclass = { 'install_data': smart_install_data},
       data_files = data_files,
+      scripts = ['bin/vb2py'],
      )
