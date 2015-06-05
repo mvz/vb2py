@@ -21,11 +21,11 @@ def loadAllPlugins():
     for mod in plugins.mods:
         log.info("Checking '%s' for plugins" % mod)
         #
-        f = open(os.path.join(modulePath(), "plugins", "%s.py" % mod), "r")
+        filename = os.path.join(modulePath(), "plugins", "%s.py" % mod)
+        f = open(filename, "r")
         try:
             try:
-                m = imp.load_module(
-                    mod, f, "Plugin-%s" % mod, ('*.py', 'r', 1))
+                m = imp.load_module(mod, f, filename, ('*.py', 'r', 1))
             finally:
                 f.close()
         except Exception, err:
