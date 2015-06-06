@@ -567,6 +567,7 @@ def main():
             usage()
             sys.exit()
         if o in ("-s", "--supports"):
+            importTarget(target)
             supports()
             sys.exit()
         if o in ("-c", "--code"):
@@ -639,13 +640,11 @@ def usage(error=None):
 # << VBConverter >> (15 of 15)
 def supports():
     """Show a list of controls supported by this converter"""
-    print "This command line option is not currently available"
-    return
     print "\nSupported controls\n"
-    for control in possible_controls:
-        ctrl = possible_controls[control]
-        if ctrl <> VBUnknownControl:
-            print "   - %s (as %s)" % (control, ctrl.pycard_name)
+    for control in resource.possible_controls:
+        ctrl = resource.possible_controls[control]
+        #if ctrl <> VBUnknownControl:
+        print "   - %s (as %s)" % (control, ctrl)
     print
 # -- end -- << VBConverter >>
 
