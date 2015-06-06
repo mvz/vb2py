@@ -63,13 +63,13 @@
 <pre class="literal-block">
 [General]
 # Space or Tab
-IndentCharacter = Space 
-# Number of spaces/tabs                                 
-IndentAmount = 4                                                         
+IndentCharacter = Space
+# Number of spaces/tabs
+IndentAmount = 4
 # Marker to use when code needs user attention
-AttentionMarker = VB2PY                         
+AttentionMarker = VB2PY
 # Yes or No
-WarnAboutUnrenderedCode = Yes   
+WarnAboutUnrenderedCode = Yes
 # Yes or No, whether to use user plugins or not. If No, system plugins will still work
 LoadUserPlugins = No
 # Default logging level, 0 is nothing
@@ -96,7 +96,7 @@ IncludeDebugCode = No
 <p>Syntax: <tt class="literal"><span class="pre">IndentCharacter</span> <span class="pre">=</span> <span class="pre">Space</span> <span class="pre">|</span> <span class="pre">Tab</span></tt></p>
 <pre class="literal-block">
 # Space or Tab
-IndentCharacter = Space 
+IndentCharacter = Space
 </pre>
 <p>Sets the indentation character as a Space or a Tab. The number of indent characters is set by the <a class="reference" href="#indentamount">IndentAmount</a>.</p>
 <p>The default is a space.</p>
@@ -109,7 +109,7 @@ IndentCharacter = Space
 <p>Syntax: <tt class="literal"><span class="pre">IndentAmount</span> <span class="pre">=</span> <span class="pre">&lt;integer&gt;</span></tt></p>
 <pre class="literal-block">
 # Space or Tab
-IndentAmount = 4        
+IndentAmount = 4
 </pre>
 <p>Sets the number of <a class="reference" href="#indentcharacter">IndentCharacter</a> 's to be used to indent code blocks.</p>
 <p>The default is 4.</p>
@@ -122,7 +122,7 @@ IndentAmount = 4
 <p>Syntax: <tt class="literal"><span class="pre">AttentionMarker</span> <span class="pre">=</span> <span class="pre">&lt;string&gt;</span></tt></p>
 <pre class="literal-block">
 # Marker to use when code needs user attention
-AttentionMarker = VB2PY                         
+AttentionMarker = VB2PY
 </pre>
 <p>Sets the marker to use in comments when highlighting part of the converted code that needs attention.</p>
 <p>The default is VB2PY.</p>
@@ -135,7 +135,7 @@ AttentionMarker = VB2PY
 <p>Syntax: <tt class="literal"><span class="pre">WarnAboutUnrenderedCode</span> <span class="pre">=</span> <span class="pre">Yes</span> <span class="pre">|</span> <span class="pre">No</span></tt></p>
 <pre class="literal-block">
 # Yes or No
-WarnAboutUnrenderedCode = Yes   
+WarnAboutUnrenderedCode = Yes
 </pre>
 <p>Determined whether an <a class="reference" href="#attentionmarker">AttentionMarker</a> is inserted in the Python code to highligh VB code which has not been rendered.</p>
 <p>The default is Yes.</p>
@@ -256,16 +256,16 @@ IncludeDebugCode = No
 <pre class="literal-block">
 [Functions]
 # Name of variable used in Functions
-ReturnVariableName = _ret             
+ReturnVariableName = _ret
 # Yes or No, leave at Yes unless good reasons!
-PreInitializeReturnVariable = Yes     
+PreInitializeReturnVariable = Yes
 </pre>
 <div class="section" id="returnvariablename">
 <h2><a name="returnvariablename">ReturnVariableName</a></h2>
 <p>Syntax: <tt class="literal"><span class="pre">ReturnVariableName</span> <span class="pre">=</span> <span class="pre">&lt;string&gt;</span></tt></p>
 <pre class="literal-block">
 # Name of variable used in Functions
-ReturnVariableName = _ret             
+ReturnVariableName = _ret
 </pre>
 <p>This option allows the return variable name to be specified. No checking is done to ensure that the name does not clash with local or global variables, so care should be taken when selecting a suitable name.</p>
 <table style="code-table"><tr><th class="code-header">VB</th><th class="code-header">Python</th></tr><tr><td class="vb-code-cell"><pre><br>Dim moduleGlobal1, moduleGlobal2<br><br>' VB2PY-GlobalSet: Functions.ReturnVariableName = _MyFunc<br>Function MyFunc(X, Optional Y, Optional Z=20)<br>    Dim subLocal<br>    subLocal = X + Y + Z + moduleGlobal<br>    moduleGlobal2 = moduleGlobal2 + 1<br>    MyFunc = subLocal*10<br>End Function<br>' VB2PY-Unset: Functions.ReturnVariableName <br><br>a = MyFunc(1, 2)<br>a = MyFunc(1, Z:=10)<br></pre></td><td class="python-code-cell"><pre><br><br><br>    moduleGlobal1 = Variant()<br>    moduleGlobal2 = Variant()<br><br>    def MyFunc(X, Y=VBMissingArgument, Z=20):<br>        global moduleGlobal2<br>        _MyFunc = None<br>        subLocal = X + Y + Z + moduleGlobal<br>        moduleGlobal2 = moduleGlobal2 + 1<br>        _MyFunc = subLocal * 10<br>        return _MyFunc<br><br>    a = MyFunc(1, 2)<br>    a = MyFunc(1, Z= 10)<br></pre></td></tr></table>
@@ -275,7 +275,7 @@ ReturnVariableName = _ret
 <p>Syntax: <tt class="literal"><span class="pre">PreInitializeReturnVariable</span> <span class="pre">=</span> <span class="pre">Yes</span> <span class="pre">|</span> <span class="pre">No</span></tt></p>
 <pre class="literal-block">
 # Yes or No, leave at Yes unless good reasons!
-PreInitializeReturnVariable = Yes     
+PreInitializeReturnVariable = Yes
 </pre>
 <p>By default the return variable is initialized to <tt class="literal"><span class="pre">None</span></tt> at the start of the function so that an error does not occur in the event that the function returns before the return variable has been assigned to. This option allows this initialization step to be omitted and is safe as long as all return paths from the function include an explicit assignment to the return value variable.</p>
 <table style="code-table"><tr><th class="code-header">VB</th><th class="code-header">Python</th></tr><tr><td class="vb-code-cell"><pre><br>Dim moduleGlobal1, moduleGlobal2<br><br>' VB2PY-GlobalSet: Functions.PreInitializeReturnVariable = Yes<br>Function MyFunc(X, Optional Y, Optional Z=20)<br>    Dim subLocal<br>    subLocal = X + Y + Z + moduleGlobal<br>    moduleGlobal2 = moduleGlobal2 + 1<br>    MyFunc = subLocal*10<br>End Function<br>' VB2PY-Unset: Functions.PreInitializeReturnVariable <br><br>a = MyFunc(1, 2)<br>a = MyFunc(1, Z:=10)<br></pre></td><td class="python-code-cell"><pre><br><br><br>    moduleGlobal1 = Variant()<br>    moduleGlobal2 = Variant()<br><br>    def MyFunc(X, Y=VBMissingArgument, Z=20):<br>        global moduleGlobal2<br>        _ret = None<br>        subLocal = X + Y + Z + moduleGlobal<br>        moduleGlobal2 = moduleGlobal2 + 1<br>        _ret = subLocal * 10<br>        return _ret<br><br>    a = MyFunc(1, 2)<br>    a = MyFunc(1, Z= 10)<br></pre></td></tr></table>
@@ -288,7 +288,7 @@ PreInitializeReturnVariable = Yes
 <p>The list of all <tt class="literal"><span class="pre">Select</span></tt> options is shown in the following table:</p>
 <pre class="literal-block">
 [Select]
-# Once or EachTime, how many times to evaluate the case variable  
+# Once or EachTime, how many times to evaluate the case variable
 EvaluateVariable = Once
 # Name of select variable (only used if EvaluateVariable is Once)
 SelectVariablePrefix = _select
@@ -299,7 +299,7 @@ UseNumericIndex = Yes
 <h2><a name="evaluatevariable">EvaluateVariable</a></h2>
 <p>Syntax: <tt class="literal"><span class="pre">EvaluateVariable</span> <span class="pre">=</span> <span class="pre">Yes</span> <span class="pre">|</span> <span class="pre">No</span></tt></p>
 <pre class="literal-block">
-# Once or EachTime, how many times to evaluate the case variable  
+# Once or EachTime, how many times to evaluate the case variable
 EvaluateVariable = Once
 </pre>
 <p>The default behaviour when converting a <tt class="literal"><span class="pre">Select</span></tt> is to evaluate the select expression once at the start of the block. By setting this option to <tt class="literal"><span class="pre">EachTime</span></tt> you can force the expression to be evaluated for each <tt class="literal"><span class="pre">if/elif</span></tt> statement. This generally looks cleaner but can lead to undesired side effects or slow run times depending on how expensive the expression is to calculate.</p>
@@ -356,7 +356,7 @@ IgnoreLabels = Yes
 <p>The list of all <tt class="literal"><span class="pre">With</span></tt> options is shown in the following table:</p>
 <pre class="literal-block">
 [With]
-# Once or EachTime, how many times to evaluate the with variable  
+# Once or EachTime, how many times to evaluate the with variable
 EvaluateVariable = Once
 # Name of with variable (only used if EvaluateVariable is Once)
 WithVariablePrefix = _with
@@ -368,7 +368,7 @@ UseNumericIndex = Yes
 <p>Syntax: <tt class="literal"><span class="pre">EvaluateVariable</span> <span class="pre">=</span> <span class="pre">Yes</span> <span class="pre">|</span> <span class="pre">No</span></tt></p>
 <pre class="literal-block">
 [With]
-# Once or EachTime, how many times to evaluate the with variable  
+# Once or EachTime, how many times to evaluate the with variable
 </pre>
 <p>The default behaviour is to evaluate the <tt class="literal"><span class="pre">With</span></tt> object once at the start of the block. By setting this option to <tt class="literal"><span class="pre">EachTime</span></tt> you can force the object to be evaluated each time it is required. This generally looks more natural but can lead to undesired side effects or slow run times depending on how expensive <a href="#id2" name="id3"><span class="problematic" id="id3">[1]_</span></a> the object is to calculate.</p>
 <table style="code-table"><tr><th class="code-header">VB</th><th class="code-header">Python</th></tr><tr><td class="vb-code-cell"><pre><br>' VB2PY-Set: With.EvaluateVariable = Once<br>With MyObject<br>    .Height = 10<br>    .Width = .Height * .ScaleFactor<br>End With<br>' VB2PY-Unset: With.EvaluateVariable<br></pre></td><td class="python-code-cell"><pre><br><br><br><br>    _with0 = MyObject<br>    _with0.Height = 10<br>    _with0.Width = _with0.Height * _with0.ScaleFactor<br></pre></td></tr></table>

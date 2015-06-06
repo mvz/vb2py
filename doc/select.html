@@ -25,7 +25,7 @@
 </ul>
 <div class="section" id="general">
 <h1><a name="general">General</a></h1>
-<p><tt class="literal"><span class="pre">Select</span></tt> blocks are replaced by <tt class="literal"><span class="pre">if/elif/else</span></tt> blocks. By default a <tt class="literal"><span class="pre">select</span></tt> variable 
+<p><tt class="literal"><span class="pre">Select</span></tt> blocks are replaced by <tt class="literal"><span class="pre">if/elif/else</span></tt> blocks. By default a <tt class="literal"><span class="pre">select</span></tt> variable
 is created, which is used in subsequent tests. This means that the checked value is
 only evaluated once per <tt class="literal"><span class="pre">select</span></tt> and not once per condition. If this is not an issue then
 an option allows the value to be evalutated each time as required. Also by default, a numeric index is appended to the select variable to prevent clashed for nested <tt class="literal"><span class="pre">Select</span></tt> constructs.</p>
@@ -40,7 +40,7 @@ an option allows the value to be evalutated each time as required. Also by defau
 <p>Here are the options in the INI file:</p>
 <pre class="literal-block">
 [Select]
-# Once or EachTime, how many times to evaluate the case variable  
+# Once or EachTime, how many times to evaluate the case variable
 EvaluateVariable = Once
 # Name of select variable (only used if EvaluateVariable is Once)
 SelectVariablePrefix = _select

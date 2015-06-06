@@ -44,7 +44,7 @@ th.code-header {
 
 td.vb-code-cell {
     padding : 10;
-    background-color : rgb(255, 255, 204);    
+    background-color : rgb(255, 255, 204);
     border-width : thin;
     border-style : solid;
     border-color : black;
@@ -56,7 +56,7 @@ td.vb-code-cell {
 
 td.python-code-cell {
     padding : 10;
-    background-color : rgb(204, 255, 204);    
+    background-color : rgb(204, 255, 204);
     border-width : thin;
     border-style : solid;
     border-color : black;
