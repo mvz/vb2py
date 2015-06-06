@@ -1,6 +1,6 @@
-import vb2py
 import os
-from targets.tkinter.controls import *
+from vb2py.resources import BaseResource
+from vb2py.targets.tkinter.controls import *
 
 # << Event translation >>
 event_translator = {
@@ -8,7 +8,7 @@ event_translator = {
 }
 # -- end -- << Event translation >>
 
-class Resource(vb2py.BaseResource):
+class Resource(BaseResource):
     """Represents a Tkinter resource object"""
 
     target_name = "Tkinter"
@@ -17,7 +17,7 @@ class Resource(vb2py.BaseResource):
     def __init__(self, *args, **kw):
         """Initialize the PythonCard resource"""
         print "Resource init"
-        vb2py.BaseResource.__init__(self, *args, **kw)
+        BaseResource.__init__(self, *args, **kw)
         print "After supre"
         self._rsc = eval(open("%s.txt" % self.basesourcefile, "r").read())
         self._rsc["controls"] = []
