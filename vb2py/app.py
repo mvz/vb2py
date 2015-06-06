@@ -604,7 +604,11 @@ def importTarget(target):
     """Import the target resource"""
     global event_translator, resource
 
-    from vb2py.targets.pythoncard import resource
+    if target == "PythonCard":
+        from vb2py.targets.pythoncard import resource
+    elif target == "TkInter":
+        from vb2py.targets.tkinter import resource
+
     TargetResource = resource.Resource
 
     try:
