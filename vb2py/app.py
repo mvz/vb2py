@@ -349,6 +349,7 @@ class FormParser(BaseParser):
             # then strip front of name (vbobj_txtName) and add to
             # code_structure.local_names
 
+    # TODO: Needs a real parser
     def parseForm(self):
         """Parse the form definition"""
         self.form_data = self.form_data.replace("\r\n", "\n")  # For *nix
@@ -385,7 +386,7 @@ class FormParser(BaseParser):
             r'^(\s*)BeginProperty\s+(\w+)(\(.*?\))?\s(.*?)$', re.MULTILINE + re.UNICODE)
 
         def sub_beginproperty(match):
-            return '%sclass vbobj_%s(resource.%s): # %s %s' % (
+            return '%sclass _vbobj_%s(resource.%s): # %s %s' % (
                     match.groups()[0],
                     match.groups()[1],
                     resource.possible_controls.get(
