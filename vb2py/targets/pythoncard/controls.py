@@ -104,7 +104,15 @@ evtDragAll = (evtDrag, evtDragDrop, evtDragOver)
 # -- end -- << Events >>
 # << SupportedControls >> (1 of 2)
 class VBControl:
-    """Base class for all VB controls"""
+    """
+
+    Base class for all VB controls
+
+    Represents the controls during form parsing for the purpose of creating a
+    resource dump. These classes are not used during run time of the converted
+    project.
+
+    """
 
     pycard_name = "VBControl"
     is_container = 0 # 1 for container classes like frames

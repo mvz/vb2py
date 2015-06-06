@@ -468,6 +468,9 @@ class FormParser(BaseParser):
         if Config["General", "DumpFormData"] == "Yes":
             log.debug(self.form_data)
         self.namespace = {"resource": resource, "Object": NameSpace()}
+
+        # Execute the form code so we have the structure in memory, which can
+        # then be dumped to a resource file.
         try:
             exec self.form_data.replace("\r", "") in self.namespace
         except Exception, err:
