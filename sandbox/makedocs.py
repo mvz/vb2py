@@ -5,6 +5,8 @@ import vb2py.utils
 import os
 import sys
 
+from docutils.core import publish_string
+
 #
 # Turn off logging
 import vb2py.extensions
@@ -45,19 +47,29 @@ def addToTemplate(text, template, token):
 if __name__ == "__main__":
     #
     add_to_template = 0
-    if len(sys.argv) == 1:
-        pattern = "*.htm"
-    else:
-        pattern = sys.argv[1]
+    settings = {
+            'embed_stylesheet' : False,
+            'stylesheet' : 'default.css',
+            'stylesheet_path' : '',
+            }
     #
     print "\nvb2Py documentation generator\n"
-    for fn in glob.glob(os.path.join("doc", pattern)):
+    for fn in glob.glob(os.path.join("rst", "*.rst")):
         print "Processing '%s' ... " % fn,
         txt = open(fn, "r").read()
-        marked_up_text = doAutomaticVBConversion(txt)
-        #
+
+        base_html_text = publish_string(writer_name = 'html',
+                source = txt,
+                settings_overrides = settings)
+
+        marked_up_text = doAutomaticVBConversion(base_html_text)
+
         if add_to_template:
             marked_up_text = addToTemplate(marked_up_text, sys.argv[2], "DOCSGOHERE")
-        #
-        open(fn+"l", "w").write(marked_up_text)
+
+        base_name = os.path.basename(fn)
+
+        target_file = os.path.join("doc", base_name.replace(".rst", ".html"))
+
+        open(target_file, "w").write(marked_up_text)
         print "Done!"
