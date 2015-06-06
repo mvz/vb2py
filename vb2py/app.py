@@ -190,7 +190,7 @@ class BaseParser(object):
     def readFileContent(self, filename):
         """Read the contents of the file"""
         text = open(filename.strip(), "r").read()  # Use strip to remove \r
-        return text
+        return text.replace("\r\n", "\n")
 
     def doValidation(self):
         """Validate the data we parsed out of the file"""
