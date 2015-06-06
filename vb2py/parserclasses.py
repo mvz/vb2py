@@ -1462,6 +1462,16 @@ class VBVariableDefinition(VBVariable):
                     local_type,
                     size)
 
+    def finalizeObject(self):
+        """Finalize the object
+
+        Check for any type markers.
+
+        """
+        ending = self.identifier[-1:] or " "
+        if ending in "#$%&":
+            log.info("Removed type identifier from '%s'" % self.identifier)
+            self.identifier = self.identifier[:-1]
 
 class VBConstant(VBVariableDefinition):
 

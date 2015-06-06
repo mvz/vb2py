@@ -187,7 +187,15 @@ a = _f
 
 """, {"a" : 10, }
 ))
-# -- end -- << Dim tests >>
+
+# Typed by postfix
+tests.append(("""
+Dim A%, B$
+A% = 10
+B$ = "hello"
+""", {"A" : 10, "B" : "hello"}
+))
+
 
 import vb2py.vbparser
 vb2py.vbparser.log.setLevel(0) # Don't print all logging stuff
