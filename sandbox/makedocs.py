@@ -51,7 +51,7 @@ if __name__ == "__main__":
         pattern = sys.argv[1]
     #
     print "\nvb2Py documentation generator\n"
-    for fn in glob.glob(os.path.join(vb2py.utils.rootPath(), "doc", pattern)):
+    for fn in glob.glob(os.path.join("doc", pattern)):
         print "Processing '%s' ... " % fn,
         txt = open(fn, "r").read()
         marked_up_text = doAutomaticVBConversion(txt)
