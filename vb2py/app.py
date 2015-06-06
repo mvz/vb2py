@@ -643,8 +643,8 @@ def supports():
     print "\nSupported controls\n"
     for control in resource.possible_controls:
         ctrl = resource.possible_controls[control]
-        #if ctrl <> VBUnknownControl:
-        print "   - %s (as %s)" % (control, ctrl)
+        if ctrl != 'VBUnknownControl':
+            print "   - %s (as %s)" % (control, ctrl)
     print
 # -- end -- << VBConverter >>
 
