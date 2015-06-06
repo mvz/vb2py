@@ -51,7 +51,15 @@ For _me.you = 1 To 10
     j = j + _me.you
 Next _me.you
 """, {"j" : 55}))
-# << For tests >> (2 of 4)
+
+# Name with type suffix
+tests.append(("""
+j = 0
+For _int% = 1 To 10
+    j = j + _int%
+Next _int%
+""", {"j" : 55}))
+
 # Nested loop
 tests.append(("""
 j = 0

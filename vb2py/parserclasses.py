@@ -2434,11 +2434,8 @@ class VBFor(VBCodeBlock):
             "expression": (VBExpression, self.expressions),
             "block": (VBCodeBlock, "block"),  # Used for full 'for'
             "body": (VBCodeBlock, "block"),  # Used for inline 'for'
+            "object": (VBObject, "object"),
         }
-
-        self.auto_handlers = [
-            "object",
-        ]
 
     def renderAsCode(self, indent=0):
         """Render this element as code"""
@@ -2460,7 +2457,7 @@ class VBFor(VBCodeBlock):
         value of that attribute. We can only do this by a local re-assignment
 
         """
-        name = self.object
+        name = self.object.renderAsCode()
         if "." not in name:
             # Ok, normal case
             self.loopname = name
