@@ -6,7 +6,7 @@ vb2Py Installation
 * `Main Installation`_
 * `GUI Installation`_
 * `Simpleparse Installation`_
-* `mxTools Installation`_
+* `mxTextTools Installation`_
 * `PythonCard Installation`_
 
 ``vb2Py`` uses Python and has been tested on Python 2.2. Python 2.3 should work but earlier versions will not.
@@ -45,13 +45,13 @@ Simpleparse Installation
 
 vb2Py uses the ``Simpleparse`` module to parse the Visual Basic code. You can download the ``Simpleparse`` files from the Simpleparse_ download site. *NB You need ``Simpleparse v2.0.1a2`` or later.* Follow the instructions on the `Simpleparse homepage`_ to install the software.
 
-You will also need to do the `mxTools Installation`_.
+You will also need to do the `mxTextTools Installation`_.
 
 
-mxTools Installation
-~~~~~~~~~~~~~~~~~~~~
+mxTextTools Installation
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-The ``Simpleparse`` library uses the mxTools_ libraries. Once you have downloaded these, follow the instructions on the `mxTools homepage`_.
+The ``Simpleparse`` library uses the mxTextTools_ libraries. Once you have downloaded these, follow the instructions on the `mxTextTools homepage`_.
 
 
 PythonCard Installation
@@ -63,7 +63,7 @@ If you want to use the ``vb2Py`` GUI or view converted forms actually running, t
 
 .. _Simpleparse: http://sourceforge.net/project/showfiles.php?group_id=55673
 .. _`Simpleparse homepage`: http://simpleparse.sourceforge.net
-.. _mxTools: http://www.egenix.com
-.. _`mxTools homepage`: http://www.egenix.com
+.. _mxTextTools: http://www.egenix.com
+.. _`mxTextTools homepage`: http://www.egenix.com
 .. _PythonCard: http://sourceforge.net/project/showfiles.php?group_id=19015
 .. _`PythonCard homepage`: http://pythoncard.sourceforge.net/installation.html
