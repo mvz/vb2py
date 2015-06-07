@@ -640,7 +640,7 @@ Syntax: ``EvaluateVariable = Yes | No``
 	# Once or EachTime, how many times to evaluate the case variable
 	EvaluateVariable = Once
 
-The default behaviour when converting a ``Select`` is to evaluate the select expression once at the start of the block. By setting this option to ``EachTime`` you can force the expression to be evaluated for each ``if/elif`` statement. This generally looks cleaner but can lead to undesired side effects or slow run times depending on how expensive the expression is to calculate.
+The default behaviour when converting a ``Select`` is to evaluate the select expression once at the start of the block. By setting this option to ``EachTime`` you can force the expression to be evaluated for each ``if/elif`` statement. This generally looks cleaner but can lead to undesired side effects or slow run times depending on how expensive [1]_ the expression is to calculate.
 
 VB::
 
@@ -1016,3 +1016,7 @@ VB(VBClassModule)::
         If ID = 0 Then setUp
     End Sub
     ' VB2PY-Unset: Classes.UseNewStyleClasses
+
+--------------
+
+.. [1] Expensive as in CPU time.

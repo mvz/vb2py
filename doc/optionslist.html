@@ -301,7 +301,7 @@ UseNumericIndex = Yes
 # Once or EachTime, how many times to evaluate the case variable
 EvaluateVariable = Once
 </pre>
-<p>The default behaviour when converting a <tt class="docutils literal">Select</tt> is to evaluate the select expression once at the start of the block. By setting this option to <tt class="docutils literal">EachTime</tt> you can force the expression to be evaluated for each <tt class="docutils literal">if/elif</tt> statement. This generally looks cleaner but can lead to undesired side effects or slow run times depending on how expensive the expression is to calculate.</p>
+<p>The default behaviour when converting a <tt class="docutils literal">Select</tt> is to evaluate the select expression once at the start of the block. By setting this option to <tt class="docutils literal">EachTime</tt> you can force the expression to be evaluated for each <tt class="docutils literal">if/elif</tt> statement. This generally looks cleaner but can lead to undesired side effects or slow run times depending on how expensive <a class="footnote-reference" href="#id3" id="id1">[1]</a> the expression is to calculate.</p>
 <table style="code-table"><tr><th class="code-header">VB</th><th class="code-header">Python</th></tr><tr><td class="vb-code-cell"><pre><br>' VB2PY-Set: Select.EvaluateVariable = Once<br>Select Case Value<br>    Case 1<br>        DoOne<br>    Case 2<br>        DoTwo<br>    Case 3, 4<br>        DoThreeOrFour<br>    Case 5 To 10<br>        DoFiveToTen<br>    Case Else<br>        DoElse<br>End Select<br>' VB2PY-Unset: Select.EvaluateVariable<br></pre></td><td class="python-code-cell"><pre><br><br><br><br>    _select0 = Value<br>    if (_select0 == 1):<br>        DoOne()<br>    elif (_select0 == 2):<br>        DoTwo()<br>    elif (_select0 == 3) or (_select0 == 4):<br>        DoThreeOrFour()<br>    elif (5 <= _select0 <= 10):<br>        DoFiveToTen()<br>    else:<br>        DoElse()<br></pre></td></tr></table>
 <p>Compare this to,</p>
 <table style="code-table"><tr><th class="code-header">VB</th><th class="code-header">Python</th></tr><tr><td class="vb-code-cell"><pre><br>' VB2PY-Set: Select.EvaluateVariable = EachTime<br>Select Case Value<br>    Case 1<br>        DoOne<br>    Case 2<br>        DoTwo<br>    Case 3, 4<br>        DoThreeOrFour<br>    Case 5 To 10<br>        DoFiveToTen<br>    Case Else<br>        DoElse<br>End Select<br>' VB2PY-Unset: Select.EvaluateVariable<br></pre></td><td class="python-code-cell"><pre><br><br><br><br>    if (Value == 1):<br>        DoOne()<br>    elif (Value == 2):<br>        DoTwo()<br>    elif (Value == 3) or (Value == 4):<br>        DoThreeOrFour()<br>    elif (5 <= Value <= 10):<br>        DoFiveToTen()<br>    else:<br>        DoElse()<br></pre></td></tr></table>
@@ -369,7 +369,7 @@ UseNumericIndex = Yes
 [With]
 # Once or EachTime, how many times to evaluate the with variable
 </pre>
-<p>The default behaviour is to evaluate the <tt class="docutils literal">With</tt> object once at the start of the block. By setting this option to <tt class="docutils literal">EachTime</tt> you can force the object to be evaluated each time it is required. This generally looks more natural but can lead to undesired side effects or slow run times depending on how expensive <a href="#id2"><span class="problematic" id="id3"><span id="id1"></span>[1]_</span></a> the object is to calculate.</p>
+<p>The default behaviour is to evaluate the <tt class="docutils literal">With</tt> object once at the start of the block. By setting this option to <tt class="docutils literal">EachTime</tt> you can force the object to be evaluated each time it is required. This generally looks more natural but can lead to undesired side effects or slow run times depending on how expensive <a class="footnote-reference" href="#id3" id="id2">[1]</a> the object is to calculate.</p>
 <table style="code-table"><tr><th class="code-header">VB</th><th class="code-header">Python</th></tr><tr><td class="vb-code-cell"><pre><br>' VB2PY-Set: With.EvaluateVariable = Once<br>With MyObject<br>    .Height = 10<br>    .Width = .Height * .ScaleFactor<br>End With<br>' VB2PY-Unset: With.EvaluateVariable<br></pre></td><td class="python-code-cell"><pre><br><br><br><br>    _with0 = MyObject<br>    _with0.Height = 10<br>    _with0.Width = _with0.Height * _with0.ScaleFactor<br></pre></td></tr></table>
 <p>Compare this to,</p>
 <table style="code-table"><tr><th class="code-header">VB</th><th class="code-header">Python</th></tr><tr><td class="vb-code-cell"><pre><br>' VB2PY-Set: With.EvaluateVariable = EveryTime<br>With MyObject<br>    .Height = 10<br>    .Width = .Height * .ScaleFactor<br>End With<br>' VB2PY-Unset: With.EvaluateVariable<br></pre></td><td class="python-code-cell"><pre><br><br><br><br>    MyObject.Height = 10<br>    MyObject.Width = MyObject.Height * MyObject.ScaleFactor<br></pre></td></tr></table>
@@ -447,13 +447,14 @@ UseNewStyleClasses = Yes
 <table style="code-table"><tr><th class="code-header">VB</th><th class="code-header">Python</th></tr><tr><td class="vb-code-cell"><pre><br>' VB2PY-GlobalSet: Classes.UseNewStyleClasses = Yes<br>Public Name As String<br>Public Age As Single<br>Private ID As Long<br><br>Public Sub checkAge()<br>    If Age = 0 Then Age = 1<br>End Sub<br>'<br>Private Sub setUp()<br>    ID = Rnd()<br>    If ID = 0 Then setUp<br>End Sub<br>' VB2PY-Unset: Classes.UseNewStyleClasses<br></pre></td><td class="python-code-cell"><pre><br><br>class MyClass(Object):<br>        """"""<br><br>        Name = String()<br>        Age = Single()<br>        __ID = Long()<br><br>        def checkAge(self):<br>            if self.Age == 0:<br>                self.Age = 1<br><br>        def __setUp(self):<br>            self.__ID = Rnd()<br>            if self.__ID == 0:<br>                self.__setUp()<br><br></pre></td></tr></table>
 <p>Compare this to,</p>
 <table style="code-table"><tr><th class="code-header">VB</th><th class="code-header">Python</th></tr><tr><td class="vb-code-cell"><pre><br>' VB2PY-GlobalSet: Classes.UseNewStyleClasses = No<br>Public Name As String<br>Public Age As Single<br>Private ID As Long<br><br>Public Sub checkAge()<br>    If Age = 0 Then Age = 1<br>End Sub<br>'<br>Private Sub setUp()<br>    ID = Rnd()<br>    If ID = 0 Then setUp<br>End Sub<br>' VB2PY-Unset: Classes.UseNewStyleClasses<br></pre></td><td class="python-code-cell"><pre><br><br>class MyClass:<br>        """"""<br><br>        Name = String()<br>        Age = Single()<br>        __ID = Long()<br><br>        def checkAge(self):<br>            if self.Age == 0:<br>                self.Age = 1<br><br>        def __setUp(self):<br>            self.__ID = Rnd()<br>            if self.__ID == 0:<br>                self.__setUp()<br><br></pre></td></tr></table>
+<hr class="docutils" />
+<table class="docutils footnote" frame="void" id="id3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[1]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> Expensive as in CPU time.</td></tr>
+</tbody>
+</table>
 </div>
-</div>
-<div class="system-messages section">
-<h1>Docutils System Messages</h1>
-<div class="system-message" id="id2">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">&lt;string&gt;</tt>, line 820); <em><a href="#id3">backlink</a></em></p>
-Unknown target name: &quot;1&quot;.</div>
 </div>
 </div>
 </body>
