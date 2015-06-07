@@ -2629,7 +2629,7 @@ class VBWith(VBCodeBlock):
         else:
             return ""
 
-    def _evaluateVariableOption():
+    def _evaluateVariableOption(self):
         return self.checkOptionChoice(
                 "With", "EvaluateVariable", ("EveryTime", "Once"))
 
