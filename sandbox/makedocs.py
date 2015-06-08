@@ -70,7 +70,7 @@ if __name__ == "__main__":
 
         target_file = "doc/" + fn[4:-4] + ".html"
 
-        print "to %s ..." % target_file,
+        print "to %s ..." % target_file
 
         txt = open(fn, "r").read()
 
@@ -85,4 +85,4 @@ if __name__ == "__main__":
 
         open(target_file, "w").write(marked_up_text)
 
-        print "Done!"
+    print "Done!"
