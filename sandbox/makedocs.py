@@ -16,24 +16,22 @@ vb2py.vbparser.log.setLevel(0) # Don't print all logging stuff
 
 def doAutomaticVBConversion(txt):
     """Convert VB code in the text to Python"""
-    vb = re.compile(r'(.*?)<p>VB(\(.*?\))?:</p>.*?<pre class="literal-block">(.*?)</pre>(.*?)',
+    vb = re.compile(r'<p>VB(\(.*?\))?:</p>.*?<pre class="literal-block">(.*?)</pre>',
                     re.DOTALL+re.MULTILINE)
     def convertVB(match):
         """Convert the match"""
-        if match.groups()[1]:
-            mod = getattr(vb2py.vbparser, match.groups()[1][1:-1])()
+        if match.groups()[0]:
+            mod = getattr(vb2py.vbparser, match.groups()[0][1:-1])()
         else:
             mod = vb2py.vbparser.VBCodeModule()
         mod.importStatements = lambda x : ""
-        m = vb2py.vbparser.parseVB(match.groups()[2], container=mod)
-        return '%s<table style="code-table">' \
+        m = vb2py.vbparser.parseVB(match.groups()[1], container=mod)
+        return '<table style="code-table">' \
                '<tr><th class="code-header">VB</th><th class="code-header">Python</th></tr>' \
                '<tr><td class="vb-code-cell"><pre>%s</pre></td>' \
-               '<td class="python-code-cell"><pre>%s</pre></td></tr></table>%s' % (
-                                           match.groups()[0],
-                                           match.groups()[2].replace("\n", "<br>"),
-                                           m.renderAsCode(1).replace("\n", "<br>"),
-                                           match.groups()[3])
+               '<td class="python-code-cell"><pre>%s</pre></td></tr></table>' % (
+                                           match.groups()[1].replace("\n", "<br>"),
+                                           m.renderAsCode(1).replace("\n", "<br>"))
     return vb.sub(convertVB, txt)
 
 
