@@ -4,3 +4,4 @@ vb2py-authors
 /build
 /dist
 /MANIFEST
+tmp/
