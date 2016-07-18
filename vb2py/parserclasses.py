@@ -1745,7 +1745,7 @@ class VBExitStatement(VBConsumer):
         indenter = self.getIndent(indent)
         rv_name = Config["Functions", "ReturnVariableName"]
         if self.element.text == "Exit Function":
-            return "%sreturn %s\n" % (indenter, rvname)
+            return "%sreturn %s\n" % (indenter, rv_name)
         elif self.element.text == "Exit Sub":
             return "%sreturn\n" % indenter
         elif self.element.text == "Exit Property":
