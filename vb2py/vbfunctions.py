@@ -664,7 +664,7 @@ def VBGetMissingArgument(fn, argument_index):
     """Return the default value for a particular argument of a function"""
     try:
         args, varargs, varkw, defaults = inspect.getargspec(fn)
-    except Exception, err:
+    except Exception:
         raise VB2PYCodeError("Unable to determine default argument for arg %d of %s: %s" % (
                     argument_index, fn, err))
     #
